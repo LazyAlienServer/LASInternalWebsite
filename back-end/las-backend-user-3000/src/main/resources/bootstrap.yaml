@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: las-backend-user-3000
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
