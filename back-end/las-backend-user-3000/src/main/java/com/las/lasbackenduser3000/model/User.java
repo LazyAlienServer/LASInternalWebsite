@@ -16,8 +16,6 @@ public class User {
     private int id;
     /**注册时间**/
     private long time;
-    /**ip**/
-    private String ip;
     /**用户名**/
     private String userName;
     /**密码**/
@@ -34,4 +32,9 @@ public class User {
     private int online;
     /**实习期**/
     private String probation;
+    /**是否管理**/
+    private int administrator;
+    /**盐**/
+    private int slat;
+
 }

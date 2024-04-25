@@ -26,10 +26,6 @@
         <select id="getUserByTime" resultType="com.las.lasbackenduser3000.model.User" parameterType="long">
                 select * from user where time = #{time}
         </select>
-
-        <select id="getUserByIp" resultType="com.las.lasbackenduser3000.model.User" parameterType="string">
-                select * from user where ip = #{ip}
-        </select>
         
         <select id="getUserByLastLogin" resultType="com.las.lasbackenduser3000.model.User" parameterType="string">
                 select * from user where lastLogin = #{lastLogin}
@@ -47,8 +43,12 @@
                 select * from user where probation = #{probation}
         </select>
 
+        <select id="getUserByAdministrator" resultType="com.las.lasbackenduser3000.model.User" parameterType="int">
+                select * from user where administrator = #{administrator}
+        </select>
+
         <insert id="addUser" parameterType="com.las.lasbackenduser3000.model.User">
-                insert into user(id, time, ip, userName, userPassword, userSignature, userTag, lastLogin, whiteList, online, probation) value (#{id},#{time},#{ip},#{userName},#{userPassword},#{userSignature},#{userTag},#{lastLogin},#{whiteList},#{online},#{probation})
+                insert into user(id, time, userName, userPassword, userSignature, userTag, lastLogin, whiteList, online, probation,administrator,slat) value (#{id},#{time},#{userName},#{userPassword},#{userSignature},#{userTag},#{lastLogin},#{whiteList},#{online},#{probation},#{administrator},#{slat})
         </insert>
 
         <delete id="deleteUserByName" parameterType="com.las.lasbackenduser3000.model.User">

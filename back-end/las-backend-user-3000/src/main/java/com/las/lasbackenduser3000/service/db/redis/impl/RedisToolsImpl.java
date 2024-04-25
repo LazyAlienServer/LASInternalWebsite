@@ -1,6 +1,6 @@
-package com.las.lasbackenduser3000.service.db.api.redis.impl;
+package com.las.lasbackenduser3000.service.db.redis.impl;
 
-import com.las.lasbackenduser3000.service.db.api.redis.RedisTools;
+import com.las.lasbackenduser3000.service.db.redis.RedisTools;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 

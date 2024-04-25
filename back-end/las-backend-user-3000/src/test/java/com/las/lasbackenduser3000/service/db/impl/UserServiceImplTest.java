@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
 
 @SpringBootTest
 class UserServiceImplTest {
@@ -15,7 +14,7 @@ class UserServiceImplTest {
 
     @Test
     void addUser() {
-        User user = new User(0,100,"127.0.0.1","Martin","Martin","苦逼开发","developer","1222","1",1,"0");
+        User user = new User(0,100,"Martin","Martin","苦逼开发","developer","1222","1",1,"0",1,-100);
         int addUser = userService.addUser(user);
         assert addUser == 1;
     }
@@ -52,11 +51,6 @@ class UserServiceImplTest {
     }
 
     @Test
-    void getUserByIp() {
-        System.out.println(userService.getUserByIp("127.0.0.1"));
-    }
-
-    @Test
     void getUserByLastLogin() {
         System.out.println(userService.getUserByLastLogin("1222"));
     }
@@ -76,6 +70,10 @@ class UserServiceImplTest {
         System.out.println(userService.getUserByProbation("0"));
     }
 
+    @Test
+    void getUserByAdministrator(){
+        System.out.println(userService.getUserByAdministrator(1));
+    }
 
     @Test
     void deleteUserByName() {

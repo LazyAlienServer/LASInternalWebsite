@@ -54,12 +54,6 @@ public interface UserMapper {
      */
     List<User> getUserByTime(long time);
 
-    /**
-     * 根据ip查询所有用户
-     * @param ip ip
-     * @return 用户实体类
-     */
-    List<User> getUserByIp(String ip);
 
     /**
      * 根据最后登陆时间查询用户
@@ -92,15 +86,22 @@ public interface UserMapper {
     /**
      * 添加用户
      * @param user 用户实体类
-     * @return 是否成功
+     * @return 影响
      */
     int addUser(User user);
 
     /**
      * 根据userName删除用户
      * @param userName 用户名
-     * @return 是否成功
+     * @return 影响
      */
     int deleteUserByName(String userName);
+
+    /**
+     * 根据是否管理获取用户
+     * @param administrator 是否管理 1=是 0=否
+     * @return 用户实体类
+     */
+    List<User> getUserByAdministrator(int administrator);
 
 }

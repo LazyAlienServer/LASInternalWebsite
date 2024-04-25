@@ -80,15 +80,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.getUserByTime(time);
     }
 
-    /**
-     * 根据ip查询所有用户
-     * @param ip ip
-     * @return 用户实体类
-     */
-    @Override
-    public List<User> getUserByIp(String ip) {
-        return userMapper.getUserByIp(ip);
-    }
+
 
     /**
      * 根据最后登陆时间查询用户
@@ -148,6 +140,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public int deleteUserByName(String userName) {
         return userMapper.deleteUserByName(userName);
+    }
+
+    /**
+     * 根据是否管理获取用户
+     * @param administrator 是否管理 1=是 0=否
+     * @return 用户实体类
+     */
+    @Override
+    public List<User> getUserByAdministrator(int administrator) {
+        return userMapper.getUserByAdministrator(administrator);
     }
 
 

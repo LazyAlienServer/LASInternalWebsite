@@ -1,4 +1,4 @@
-package com.las.lasbackenduser3000.service.db.api.redis;
+package com.las.lasbackenduser3000.service.db.redis;
 
 /**
  * redis工具类

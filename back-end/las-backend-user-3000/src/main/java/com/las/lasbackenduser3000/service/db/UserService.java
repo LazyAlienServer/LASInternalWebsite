@@ -55,12 +55,7 @@ public interface UserService {
      */
     List<User> getUserByTime(long time);
 
-    /**
-     * 根据ip查询所有用户
-     * @param ip ip
-     * @return 用户实体类
-     */
-    List<User> getUserByIp(String ip);
+
 
     /**
      * 根据最后登陆时间查询用户
@@ -103,5 +98,13 @@ public interface UserService {
      * @return 是否成功
      */
     int deleteUserByName(String userName);
+
+
+    /**
+     * 根据是否管理获取用户
+     * @param administrator 是否管理 1=是 0=否
+     * @return 用户实体类
+     */
+    List<User> getUserByAdministrator(int administrator);
 
 }
