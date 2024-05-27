@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.concurrent.TimeUnit;
+
 @SpringBootTest
 class RedisToolsImplTest {
 
@@ -15,7 +17,7 @@ class RedisToolsImplTest {
     @Test
     void insert() {
         User user = new User(0,100,"Martin","Martin","苦逼开发","developer","1222","1",1,"0",1,-100);
-        redisTools.insert("111.111.111.111",user);
+        redisTools.insert("111.111.111.111",user,20, TimeUnit.DAYS);
 
     }
 

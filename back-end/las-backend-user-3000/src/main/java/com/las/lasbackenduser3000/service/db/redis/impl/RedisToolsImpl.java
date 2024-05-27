@@ -5,6 +5,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author sunyinuo
@@ -21,8 +22,8 @@ public class RedisToolsImpl implements RedisTools {
      * @param value value
      */
     @Override
-    public void insert(String key, Object value) {
-       redisTemplate.opsForValue().set(key,value);
+    public void insert(String key, Object value,long timeout, TimeUnit unit) {
+       redisTemplate.opsForValue().set(key,value,timeout, unit);
     }
 
     @Override

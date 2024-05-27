@@ -9,5 +9,8 @@ class Md5SlatTest {
         int slat = Slat.slat();
         System.out.println(slat);
         System.out.println(Md5Slat.md5Slat("10", slat));
+
+        System.out.println(Md5Slat.md5Slat("Martin", -100));
+        System.out.println(Md5Slat.md5Slat("1", -100));
     }
 }

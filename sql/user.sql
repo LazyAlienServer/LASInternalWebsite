@@ -12,7 +12,9 @@ create table user
     online        int                              not null ,
     probation     text                             not null ,
     administrator int                              not null ,
-    slat int                                    not null
+    slat int                                    not null        ,
+    uuid text not null ,
+    qq int not null
 )
     collate = utf8mb3_bin;
 
