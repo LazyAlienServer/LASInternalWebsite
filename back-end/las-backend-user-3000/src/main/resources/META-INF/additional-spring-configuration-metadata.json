@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "onebot11.access_token",
+      "type": "java.lang.String",
+      "description": "Description for onebot11.access_token."
+    }
+  ] }
