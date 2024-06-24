@@ -2,6 +2,13 @@ server:
     port: 3000
 # 数据源
 spring:
+    #RabbitMq
+    rabbitmq:
+        host: 127.0.0.1
+        port: 5672
+        username: root
+        password: root
+        virtualHost: /
     application:
         name: las-backend-user-3000
     cloud:
