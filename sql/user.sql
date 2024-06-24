@@ -3,7 +3,6 @@ create table user
     id            int auto_increment
         primary key,
     time          mediumtext                       not null,
-    ip            text                             not null,
     userName      text collate utf8mb4_general_ci  not null,
     userPassword  text collate utf8mb4_general_ci  not null,
     userSignature text collate utf8mb3_croatian_ci not null,
@@ -11,7 +10,11 @@ create table user
     lastLogin     mediumtext                       not null ,
     whiteList     text                             not null ,
     online        int                              not null ,
-    probation     text                             not null
+    probation     text                             not null ,
+    administrator int                              not null ,
+    slat int                                    not null        ,
+    uuid text not null ,
+    qq int not null
 )
     collate = utf8mb3_bin;
 
