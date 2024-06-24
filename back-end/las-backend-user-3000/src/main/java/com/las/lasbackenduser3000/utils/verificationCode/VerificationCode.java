@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author sunyinuo
@@ -53,6 +54,9 @@ public class VerificationCode {
             //用get 和提供的索引找到相应位置的数据给变量
             vc3 += vc1.charAt(a);
         }
+
+        //存redis
+        redisTools.insert(qq,vc3,5, TimeUnit.MINUTES);
 
         //封装
         String message = text + "\n\n\n" + "你的验证码为:" + vc3;
