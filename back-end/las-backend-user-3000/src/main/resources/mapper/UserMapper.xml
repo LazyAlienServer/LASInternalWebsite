@@ -47,8 +47,12 @@
                 select * from user where administrator = #{administrator}
         </select>
 
+        <select id="getUserByQq" resultType="com.las.lasbackenduser3000.model.User" parameterType="string">
+                select * from user where qq = #{qq}
+        </select>
+
         <insert id="addUser" parameterType="com.las.lasbackenduser3000.model.User">
-                insert into user(id, time, userName, userPassword, userSignature, userTag, lastLogin, whiteList, online, probation,administrator,slat) value (#{id},#{time},#{userName},#{userPassword},#{userSignature},#{userTag},#{lastLogin},#{whiteList},#{online},#{probation},#{administrator},#{slat})
+                insert into user(id, time, userName, userPassword, userSignature, userTag, lastLogin, whiteList, online, probation,administrator,slat,qq) value (#{id},#{time},#{userName},#{userPassword},#{userSignature},#{userTag},#{lastLogin},#{whiteList},#{online},#{probation},#{administrator},#{slat},#{qq})
         </insert>
 
         <delete id="deleteUserByName" parameterType="com.las.lasbackenduser3000.model.User">

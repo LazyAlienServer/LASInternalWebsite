@@ -36,5 +36,7 @@ public class User {
     private int administrator;
     /**盐**/
     private int slat;
+    /**qq**/
+    private String qq;
 
 }

@@ -1,4 +1,4 @@
-package com.las.lasbackenduser3000.model.bot;
+package com.las.lasbackenduser3000.model.bot.sendPrivateMsg;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -123,6 +123,17 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * 根据qq号获取用户
+     *
+     * @param qq qq
+     * @return 用户实体类
+     */
+    @Override
+    public User getUserByQq(String qq) {
+        return userMapper.getUserByQq(qq);
+    }
+
+    /**
      * 添加用户
      * @param user 用户实体类
      * @return 是否成功

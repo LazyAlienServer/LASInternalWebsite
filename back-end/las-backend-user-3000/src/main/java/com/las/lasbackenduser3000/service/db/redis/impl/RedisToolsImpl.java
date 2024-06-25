@@ -26,8 +26,28 @@ public class RedisToolsImpl implements RedisTools {
        redisTemplate.opsForValue().set(key,value,timeout, unit);
     }
 
+    /**
+     * 插入数据,无过期时间
+     * @param key   k
+     * @param value v
+     */
+    @Override
+    public void insert(String key, Object value) {
+        redisTemplate.opsForValue().set(key,value);
+    }
+
     @Override
     public Object getByKey(String key) {
         return redisTemplate.opsForValue().get(key);
+    }
+
+    /**
+     * 删除
+     *
+     * @param key k
+     */
+    @Override
+    public void delete(String key) {
+        redisTemplate.delete(key);
     }
 }
