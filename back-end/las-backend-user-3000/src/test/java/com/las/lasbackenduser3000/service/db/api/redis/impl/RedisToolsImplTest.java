@@ -16,7 +16,7 @@ class RedisToolsImplTest {
 
     @Test
     void insert() {
-        User user = new User(0,100,"Martin","Martin","苦逼开发","developer","1222","1",1,"0",1,-100);
+        User user = new User(0,100,"Martin","Martin","苦逼开发","developer","1222","1",1,"0",1,-100,"2192519304");
         redisTools.insert("111.111.111.111",user,20, TimeUnit.DAYS);
 
     }

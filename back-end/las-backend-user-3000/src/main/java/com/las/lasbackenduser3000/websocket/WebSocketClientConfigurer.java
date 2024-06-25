@@ -15,7 +15,7 @@ import java.util.Map;
 @Component
 public class WebSocketClientConfigurer {
 
-    private final String URL = "ws://server.lazyalienserver.top:3000/";
+    private final String URL = "ws://server.lazyalienserver.top:3000/api/";
 
     @Bean
     public WebSocketClient webSocketClient() {

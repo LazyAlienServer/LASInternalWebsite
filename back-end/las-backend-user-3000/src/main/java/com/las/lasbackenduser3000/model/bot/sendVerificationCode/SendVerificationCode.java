@@ -1,4 +1,4 @@
-package com.las.lasbackenduser3000.model.bot;
+package com.las.lasbackenduser3000.model.bot.sendVerificationCode;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,9 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Params {
-
-
-    private long user_id;
+public class SendVerificationCode {
     private String message;
+    private String qq;
 }

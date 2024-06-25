@@ -86,6 +86,13 @@ public interface UserService {
     List<User> getUserByProbation(String probation);
 
     /**
+     * 根据qq号获取用户
+     * @param qq qq
+     * @return 用户实体类
+     */
+    User getUserByQq(String qq);
+
+    /**
      * 添加用户
      * @param user 用户实体类
      * @return 是否成功

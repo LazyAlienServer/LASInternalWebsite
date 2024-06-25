@@ -6,15 +6,16 @@ create table user
     userName      text collate utf8mb4_general_ci  not null,
     userPassword  text collate utf8mb4_general_ci  not null,
     userSignature text collate utf8mb3_croatian_ci not null,
-    userTag       text collate utf8mb4_general_ci  not null,
-    lastLogin     mediumtext                       not null ,
-    whiteList     text                             not null ,
-    online        int                              not null ,
-    probation     text                             not null ,
-    administrator int                              not null ,
-    slat int                                    not null        ,
-    uuid text not null ,
-    qq int not null
+    userTag       text collate utf8mb4_general_ci  null,
+    lastLogin     mediumtext                       null,
+    whiteList     text                             null,
+    online        int                              null,
+    probation     text                             not null,
+    administrator int                              not null,
+    slat          int                              not null,
+    qq            text                             not null
 )
     collate = utf8mb3_bin;
+
+
 
