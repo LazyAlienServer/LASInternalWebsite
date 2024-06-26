@@ -13,6 +13,7 @@
         <module>las-backend-api-gateway-9000</module>
         <module>las-backend-common</module>
         <module>las-backend-user-3000</module>
+        <module>las-backend-project-managerial-submit-4000</module>
     </modules>
 
     <properties>

@@ -1,5 +1,6 @@
 package com.las.lasbackenduser3000.service.api.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.las.lasbackenduser3000.model.User;
 import com.las.lasbackenduser3000.service.api.LoginService;
 import com.las.lasbackenduser3000.service.db.impl.UserServiceImpl;
@@ -47,7 +48,7 @@ public class LoginServiceImpl implements LoginService {
                 //以用户id为key，生成的token为value，缓存到redis，20天过期
                 redisTools.insert(String.valueOf(userByName.getId()),token,20, TimeUnit.DAYS);
                 //以生成的token为key，用户信息为value，缓存到redis，20天过期
-                redisTools.insert(token,userByName,20, TimeUnit.DAYS);
+                redisTools.insert(token, JSONObject.toJSONString(userByName),20, TimeUnit.DAYS);
 
                 //全部正确,存入redis,返回
                 return ResultUtil.result(ResultEnum.SUCCESS.getCode(), token ,"登陆成功");
