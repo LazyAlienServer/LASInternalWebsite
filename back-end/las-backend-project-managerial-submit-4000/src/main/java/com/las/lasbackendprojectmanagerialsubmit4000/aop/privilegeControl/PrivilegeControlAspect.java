@@ -1,9 +1,8 @@
-package com.las.lasbackenduser3000.aop.privilegeControl;
+package com.las.lasbackendprojectmanagerialsubmit4000.aop.privilegeControl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.las.lasbackenduser3000.model.User;
-import com.las.lasbackenduser3000.service.db.redis.impl.RedisToolsImpl;
+import com.las.lasbackendprojectmanagerialsubmit4000.service.db.redis.impl.RedisToolsImpl;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -24,7 +23,7 @@ import java.lang.reflect.Method;
 @Aspect
 public record PrivilegeControlAspect(RedisToolsImpl redisTools) {
 
-    @Pointcut("@annotation(com.las.lasbackenduser3000.aop.privilegeControl.PrivilegeControl)")
+    @Pointcut("@annotation(com.las.lasbackendprojectmanagerialsubmit4000.aop.privilegeControl.PrivilegeControl)")
     public void privilegeControlPointCut() {}
 
     @Around("privilegeControlPointCut()")

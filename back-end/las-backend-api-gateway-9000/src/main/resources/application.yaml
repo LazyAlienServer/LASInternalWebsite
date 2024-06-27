@@ -31,11 +31,17 @@ spring:
           predicates:
             - Path=/usersignin/**
             - Method=GET,POST
-        #信息获取
-        - id: information
+        #项目管理-提交
+        - id: project-managerial-submit
           uri: http://localhost:4000
           predicates:
-              - Path=/information/**
+              - Path=/project-managerial-submit/**
+              - Method=GET,POST
+        #项目管理-审核
+        - id: project-managerial-audits
+          uri: http://localhost:4500
+          predicates:
+              - Path=/project-managerial-audits/**
               - Method=GET,POST
     nacos:
       config:
