@@ -12,7 +12,7 @@ import result.Result;
  * @author sunyinuo
  */
 @RestController
-@RequestMapping("/projectmanagerial/")
+@RequestMapping("/project-managerial-submit/")
 public class SubmitController {
     public final SubmitServiceImpl submitService;
 

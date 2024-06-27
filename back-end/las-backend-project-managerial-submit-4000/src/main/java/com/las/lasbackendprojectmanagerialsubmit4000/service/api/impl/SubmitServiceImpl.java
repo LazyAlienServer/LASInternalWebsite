@@ -52,7 +52,7 @@ public class SubmitServiceImpl implements SubmitService {
         if (redisTools.getByKey(submitOriginal.getName()) == null){
             //设置图片url
             for (FileUpload file : files) {
-                url.add("http://127.0.0.1:9000/projectmanagerial/api/getFile/" + file.getId());
+                url.add("http://127.0.0.1:9000/project-managerial-submit/api/getFile/" + file.getId());
                 submit.setPicture(url);
             }
 
@@ -66,11 +66,11 @@ public class SubmitServiceImpl implements SubmitService {
             submit.setInnovation(submitOriginal.isInnovation());
             submit.setNote(submitOriginal.getNote());
 
-            redisTools.insert("PROJECT_" + submit.getName(),submit);
+            redisTools.insert("PROJECT_" + submit.getName(),JSONObject.toJSONString(submit));
+
+            return ResultUtil.result(ResultEnum.SUCCESS.getCode(), submit.toString(),"提交成功");
         }else{
             return ResultUtil.result(ResultEnum.SERVER_ERROR.getCode(),"项目名重复");
         }
-
-        return ResultUtil.result(ResultEnum.SUCCESS.getCode(), submit.toString(),"提交成功");
     }
 }

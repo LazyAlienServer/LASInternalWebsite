@@ -12,7 +12,7 @@ import result.Result;
  * @author sunyinuo
  */
 @RestController
-@RequestMapping("/projectmanagerial/api")
+@RequestMapping("/project-managerial-submit/api")
 public class ApiController {
 
     private final FileUploadServiceImpl fileUploadService;
