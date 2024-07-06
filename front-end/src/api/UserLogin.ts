@@ -6,11 +6,9 @@ import {setCookie} from "typescript-cookie";
 
 function UserLogin(this: any, username: string | undefined, password: string | undefined, message: Ref<string>): void {
     request.post('/usersignin/login', {
-        "username": username,
+        "userName": username,
         "password": password
     }).then(r => {
-        console.log(r.data.msg);
-        //this.$cookies.set('token',r.data.token);
         message.value = r.data.msg;
         if (r.data.code === 200) {
             ElNotification({
@@ -20,8 +18,8 @@ function UserLogin(this: any, username: string | undefined, password: string | u
                 customClass: "LoginSuccess",
                 duration: 800
             });
-            setCookie('userName', username);
-            setCookie('passwd', password);
+            setCookie('token',r.data.data);
+            // noinspection JSIgnoredPromiseFromCall
             router.replace("/user");
         } else {
             ElNotification({

@@ -16,7 +16,7 @@
           </div>
           <div class="player_info">
             <p id="userName" style="font-size: 20px; margin-bottom: 8px">{{ UserName }}</p>
-            <p id="uid" style="font-size: 18px">uid: 123456</p>
+            <p id="uid" style="font-size: 18px">uid:{{UserId}}</p>
           </div>
         </div>
       </div>
@@ -249,32 +249,26 @@ import {getCookie} from "typescript-cookie";
 import UserViewMenu from "@/utils/userViewMenu";
 import {useRouter} from "vue-router";
 import router from "@/router";
+import {request} from "@/main";
 
 let Page = 1;
 let UserName: Ref<string | undefined> = ref("");
+let UserId :Ref<number | undefined> = ref(0)
 let route = useRouter();
 let transitionName = ref("view");
 
-//console.log(route);
-
-// route.beforeEach((to,from)=>{
-//   if(to.meta.index!=undefined &&from.meta.index!=undefined){
-//     let toIndex=to.meta.index as number;
-//     let fromIndex=from.meta.index as number;
-//     if(toIndex>fromIndex){
-//       transitionName.value="view";
-//     }else {
-//       transitionName.value="view-reverse";
-//     }
-//   }
-// })
-
-
 function init() {
-  if (getCookie('userName') != undefined) {
-    UserName.value = getCookie('userName');
+  if (getCookie('token') != undefined) {
+    request.post('usersignin/crud/getUserNameByToken/?token='+getCookie('token'), {
+    }).then(r => {
+      UserName.value = String(r.data)
+    });
+    request.post('usersignin/crud/getUserIdByToken/?token='+getCookie('token'), {
+    }).then(r => {
+      UserId.value = Number(r.data)
+    });
   } else {
-    //router.replace("/");
+    router.replace("/");
   }
 }
 

@@ -5,7 +5,7 @@ import axios from "axios";
 type Result<T> = {
     code: number;
     msg: string;
-    result: T;
+    data: T;
 };
 
 // 导出Request类，可以用来自定义传递配置来创建实例

@@ -137,4 +137,25 @@ public class UserCrud {
     public boolean getLoginState(String token){
         return redisTools.getByKey(token) != null;
     }
+
+    @PostMapping("/getUserIdByToken")
+    public int getUserIdByToken(String token){
+        //根据token查redis
+        String byKeyString = (String) redisTools.getByKey(token);
+        JSONObject userJson = JSONObject.parseObject(byKeyString);
+        User byKey = JSON.toJavaObject(userJson,User.class);
+
+        return byKey.getId();
+    }
+
+    @PostMapping("/getUserNameByToken")
+    public String getUserNameByToken(String token){
+        //根据token查redis
+        String byKeyString = (String) redisTools.getByKey(token);
+        JSONObject userJson = JSONObject.parseObject(byKeyString);
+        User byKey = JSON.toJavaObject(userJson,User.class);
+
+        return byKey.getUserName();
+    }
+
 }

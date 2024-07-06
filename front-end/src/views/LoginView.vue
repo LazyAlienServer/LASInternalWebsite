@@ -288,8 +288,10 @@
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
 import UserLogin from "@/api/UserLogin";
+import {request} from '@/main'
 import {ElNotification} from "element-plus";
 import {getCookie} from "typescript-cookie";
+import router from "@/router";
 
 let username = ref("");
 let password = ref("");
@@ -325,20 +327,15 @@ function Login() {
 }
 
 function init() {
-  if (getCookie('userName') != undefined && getCookie('passwd') != undefined) {
-    UserLogin(getCookie('userName'), getCookie('passwd'), message);
-  }
+  request.post('usersignin/crud/getLoginState/?token='+getCookie('token'), {
+  }).then(r => {
+    if (getCookie('token') != undefined) {
+      if(Boolean(r.data)){
+        router.replace("/user");
+      }
+    }
+  });
 }
-
-// function Register(){
-//   if(username.value.length>0 && password.value.length>0){
-//     if(username.value.length>=3&&username.value.length<=16){
-//       if(password.value.length>=6&&password.value.length<=18){
-//         UserRegister(username.value,password.value,message);
-//       }else ElNotification({title:"提示",message:"密码必须在6到18位之间",type:"warning",customClass:"RegisterWarn",duration:2000});
-//     }else ElNotification({title:"提示",message:"用户名必须在3到16位之间",type:"warning",customClass:"RegisterWarn",duration:2000});
-//   }else ElNotification({title:"提示",message:"用户名和密码不能为空",type:"warning",customClass:"RegisterWarn",duration:2000});
-// }
 
 onMounted(() => {
   init();
