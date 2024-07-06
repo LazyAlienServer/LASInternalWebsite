@@ -43,6 +43,12 @@ spring:
           predicates:
               - Path=/project-managerial-audits/**
               - Method=GET,POST
+        #公告
+        - id: las-backend-bulletin-5000
+          uri: http://localhost:5000
+          predicates:
+            - Path=/bulletin/**
+            - Method=GET,POST
     nacos:
       config:
         server-addr: 127.0.0.1:8848

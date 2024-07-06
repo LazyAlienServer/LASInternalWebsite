@@ -1,0 +1,39 @@
+server:
+    port: 5000
+# 数据源
+spring:
+    application:
+        name: las-backend-bulletin-5000
+    cloud:
+        nacos:
+            config:
+                server-addr: 127.0.0.1:8848
+    datasource:
+        dynamic:
+            primary: mysql-development
+            strict: true #不严格匹配数据源
+            datasource:
+                #开发数据源-暂时不契合生产环境数据库的多库
+                mysql-development:
+                    url: jdbc:mysql://rm-uf6591z23t4337h84ko.mysql.rds.aliyuncs.com:3306/dev
+                    username: root
+                    password: LASDevsql2023!
+                    driver-class-name: com.mysql.cj.jdbc.Driver
+    #redis catch
+    cache:
+        type: redis
+    redis:
+        host: 127.0.0.1
+        timeout: 3000ms
+        port: 6379
+        database: 0
+        lettuce:
+            pool:
+                max-active: 10
+                max-idle: 10
+                max-wait: 3000ms
+                min-idle: 20
+# log4j2
+logging:
+    level:
+        cn.jay.repository: trace
