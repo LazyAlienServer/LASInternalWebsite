@@ -132,4 +132,9 @@ public class UserCrud {
         User byKey = JSON.toJavaObject(userJson,User.class);
         return ResultUtil.result(ResultEnum.SUCCESS.getCode(), byKey,null);
     }
+
+    @PostMapping("/getLoginState")
+    public boolean getLoginState(String token){
+        return redisTools.getByKey(token) != null;
+    }
 }
