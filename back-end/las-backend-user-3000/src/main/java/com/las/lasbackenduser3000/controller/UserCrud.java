@@ -1,6 +1,11 @@
 package com.las.lasbackenduser3000.controller;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.las.lasbackenduser3000.aop.privilegeControl.PrivilegeControl;
+import com.las.lasbackenduser3000.model.User;
 import com.las.lasbackenduser3000.service.db.impl.UserServiceImpl;
+import com.las.lasbackenduser3000.service.db.redis.impl.RedisToolsImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import result.Result;
 import result.ResultEnum;
@@ -14,10 +19,12 @@ import result.ResultUtil;
 @RestController
 @RequestMapping("/usersignin/crud")
 public class UserCrud {
-    
+
+    public final RedisToolsImpl redisTools;
     public final UserServiceImpl userService;
 
-    public UserCrud(UserServiceImpl userService) {
+    public UserCrud(RedisToolsImpl redisTools, UserServiceImpl userService) {
+        this.redisTools = redisTools;
         this.userService = userService;
     }
 
@@ -117,5 +124,12 @@ public class UserCrud {
         return ResultUtil.result(ResultEnum.SUCCESS.getCode(), userService.getUserByAdministrator(administrator),null);
     }
 
-
+    @PostMapping("/getUserByToken")
+    public Result getUserByToken(String token){
+        //根据token查redis
+        String byKeyString = (String) redisTools.getByKey(token);
+        JSONObject userJson = JSONObject.parseObject(byKeyString);
+        User byKey = JSON.toJavaObject(userJson,User.class);
+        return ResultUtil.result(ResultEnum.SUCCESS.getCode(), byKey,null);
+    }
 }
