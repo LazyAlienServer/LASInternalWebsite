@@ -40,4 +40,17 @@
         delete from bulletin where title = #{title}
     </delete>
 
+    <update id="update">
+        update bulletin
+        set id = #{id},
+            publisher = #{publisher},
+            level = #{level},
+            time = #{time},
+            title = #{title},
+            body = #{body},
+            sticky = #{sticky}
+        where
+            id = #{id}
+    </update>
+
 </mapper>

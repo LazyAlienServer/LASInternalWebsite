@@ -107,4 +107,17 @@ public class BulletinServiceImpl implements BulletinService {
     public int deleteBulletinByTitle(String title) {
         return bulletinMapper.deleteBulletinByTitle(title);
     }
+
+    /**
+     * 更新
+     *
+     * @param bulletin 实体类
+     * @return 影响
+     */
+    @Override
+    public int update(Bulletin bulletin) {
+        return bulletinMapper.update(bulletin);
+    }
+
+
 }

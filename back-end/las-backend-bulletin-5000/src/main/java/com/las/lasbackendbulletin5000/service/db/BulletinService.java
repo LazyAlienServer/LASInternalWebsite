@@ -72,4 +72,11 @@ public interface BulletinService {
      * @return 影响
      */
     int deleteBulletinByTitle (String title);
+
+    /**
+     * 更新
+     * @param bulletin 实体类
+     * @return 影响
+     */
+    int update(Bulletin bulletin);
 }
