@@ -158,4 +158,13 @@ public class UserCrud {
         return byKey.getUserName();
     }
 
+    @PostMapping("/getAvatarByToken")
+    public String getAvatarByToken(String token){
+        //根据token查redis
+        String byKeyString = (String) redisTools.getByKey(token);
+        JSONObject userJson = JSONObject.parseObject(byKeyString);
+        User byKey = JSON.toJavaObject(userJson,User.class);
+
+        return byKey.getAvatar();
+    }
 }

@@ -52,10 +52,29 @@
         </select>
 
         <insert id="addUser" parameterType="com.las.lasbackenduser3000.model.User">
-                insert into user(id, time, userName, userPassword, userSignature, userTag, lastLogin, whiteList, online, probation,administrator,slat,qq) value (#{id},#{time},#{userName},#{userPassword},#{userSignature},#{userTag},#{lastLogin},#{whiteList},#{online},#{probation},#{administrator},#{slat},#{qq})
+                insert into user(id, time, userName, userPassword, userSignature, userTag, lastLogin, whiteList, online, probation,administrator,slat,qq,avatar) value (#{id},#{time},#{userName},#{userPassword},#{userSignature},#{userTag},#{lastLogin},#{whiteList},#{online},#{probation},#{administrator},#{slat},#{qq},#{avatar})
         </insert>
 
         <delete id="deleteUserByName" parameterType="com.las.lasbackenduser3000.model.User">
                 delete from user where userName = #{userName}
         </delete>
+
+        <update id="update">
+                update user
+                set id = #{id},
+                    time = #{time},
+                    userName = #{userName},
+                    userPassword = #{userPassword},
+                    userSignature = #{userSignature},
+                    userTag = #{userTag},
+                    lastLogin = #{lastLogin},
+                    whiteList = #{whiteList},
+                    online = #{online},
+                    probation = #{probation},
+                    administrator = #{administrator},
+                    slat = #{slat},
+                    qq = #{qq},
+                    avatar = #{avatar}
+                where id = #{id}
+        </update>
 </mapper>

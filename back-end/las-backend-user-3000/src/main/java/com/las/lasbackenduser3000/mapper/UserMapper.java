@@ -112,4 +112,11 @@ public interface UserMapper {
      */
     List<User> getUserByAdministrator(int administrator);
 
+    /**
+     * 更新
+     * @param user 实体类
+     * @return 影响
+     */
+    int update(User user);
+
 }

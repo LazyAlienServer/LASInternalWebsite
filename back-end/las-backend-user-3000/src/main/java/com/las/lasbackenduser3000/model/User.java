@@ -38,5 +38,7 @@ public class User {
     private int slat;
     /**qq**/
     private String qq;
+    /**头像**/
+    private String avatar;
 
 }

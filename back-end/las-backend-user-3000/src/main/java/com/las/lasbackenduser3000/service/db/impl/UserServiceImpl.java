@@ -163,5 +163,15 @@ public class UserServiceImpl implements UserService {
         return userMapper.getUserByAdministrator(administrator);
     }
 
+    /**
+     * 更新
+     * @param user 实体类
+     * @return 影响
+     */
+    @Override
+    public int update(User user) {
+        return userMapper.update(user);
+    }
+
 
 }
