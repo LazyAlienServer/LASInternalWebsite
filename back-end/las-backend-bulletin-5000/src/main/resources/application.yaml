@@ -23,10 +23,12 @@ spring:
     cache:
         type: redis
     redis:
-        host: 127.0.0.1
-        timeout: 3000ms
+        host: r-uf6kcot5rjb73ktg3opd.redis.rds.aliyuncs.com
         port: 6379
         database: 0
+        username: main
+        password: LazyAlienServer2024!
+        timeout: 3000ms
         lettuce:
             pool:
                 max-active: 10
