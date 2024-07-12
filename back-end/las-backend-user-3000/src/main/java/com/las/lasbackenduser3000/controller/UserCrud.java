@@ -167,4 +167,10 @@ public class UserCrud {
 
         return byKey.getAvatar();
     }
+
+    @PostMapping("/getAvatarByUserName")
+    public String getAvatarByUserName(String userName){
+        User user = userService.getUserByName(userName);
+        return user.getAvatar();
+    }
 }
