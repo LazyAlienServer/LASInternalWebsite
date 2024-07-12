@@ -6,7 +6,6 @@
         <groupId>org.las</groupId>
         <artifactId>back-end</artifactId>
         <version>1.0.0</version>
-        <relativePath/>
     </parent>
     <groupId>com.las</groupId>
     <artifactId>las-backend-user-3000</artifactId>
@@ -63,6 +62,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
             <optional>true</optional>
         </dependency>
         <!--MybatisPlus-->

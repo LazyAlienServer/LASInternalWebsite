@@ -12,6 +12,11 @@ class BulletinServiceImplTest {
 
     @Autowired
     public BulletinServiceImpl bulletinService;
+    @Test
+    void addBulletin() {
+        System.out.println(bulletinService.addBulletin(new Bulletin(0, "fanzhi", 0, "122222", "test title", "body", true)));
+        System.out.println(bulletinService.addBulletin(new Bulletin(0, "martin", 0, "122222", "测试", "body", false)));
+    }
 
     @Test
     void getBulletinList() {
@@ -48,14 +53,10 @@ class BulletinServiceImplTest {
         System.out.println(bulletinService.getBulletinBySticky(true));
     }
 
-    @Test
-    void addBulletin() {
-        System.out.println(bulletinService.addBulletin(new Bulletin(0, "fanzhi", 0, "122222", "test title", "body", true)));
-        System.out.println(bulletinService.addBulletin(new Bulletin(0, "martin", 0, "122222", "测试", "body", false)));
-    }
 
     @Test
     void deleteBulletinByTitle() {
+        System.out.println(bulletinService.deleteBulletinByTitle("测试"));
         System.out.println(bulletinService.deleteBulletinByTitle("test title"));
     }
 }
