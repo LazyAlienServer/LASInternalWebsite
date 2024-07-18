@@ -3,7 +3,6 @@ package com.las.lasbackendprojectmanagerialsubmit4000.service.api.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.las.lasbackendprojectmanagerialsubmit4000.model.FileUpload;
 import com.las.lasbackendprojectmanagerialsubmit4000.model.Submit;
-import com.las.lasbackendprojectmanagerialsubmit4000.model.SubmitOriginal;
 import com.las.lasbackendprojectmanagerialsubmit4000.service.api.SubmitService;
 import com.las.lasbackendprojectmanagerialsubmit4000.service.db.redis.impl.RedisToolsImpl;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -40,31 +39,21 @@ public class SubmitServiceImpl implements SubmitService {
      */
     @Override
     public Result submit(JSONObject jsonParam) {
-        SubmitOriginal submitOriginal = JSONObject.toJavaObject(jsonParam, SubmitOriginal.class);
+
+        Submit submit = JSONObject.toJavaObject(jsonParam,Submit.class);
 
         //获取图片
-        Query query = Query.query(Criteria.where("projectName").is(submitOriginal.getName()));
+        Query query = Query.query(Criteria.where("projectName").is(submit.getName()));
         List<FileUpload> files = mongoTemplate.find(query, FileUpload.class);
 
-        Submit submit = new Submit();
         List<String> url = new ArrayList<>();
 
-        if (redisTools.getByKey(submitOriginal.getName()) == null){
+        if (redisTools.getByKey(submit.getName()) == null){
             //设置图片url
             for (FileUpload file : files) {
                 url.add("http://127.0.0.1:9000/project-managerial-submit/api/getFile/" + file.getId());
                 submit.setPicture(url);
             }
-
-
-
-            //设置其他信息
-            submit.setName(submitOriginal.getName());
-            submit.setAuthors(submitOriginal.getAuthors());
-            submit.setStart_time(submitOriginal.getStart_time());
-            submit.setPlace(submitOriginal.getPlace());
-            submit.setInnovation(submitOriginal.isInnovation());
-            submit.setNote(submitOriginal.getNote());
 
             redisTools.insert("PROJECT_" + submit.getName(),JSONObject.toJSONString(submit));
 

@@ -20,9 +20,13 @@ public class Submit {
     private String start_time;
     private Place place;
     private boolean innovation;
-    private boolean pass;
+
+    private Boolean pass;
     private String auditor;
+
     private String note;
-    private String picture;
+    private List<String> picture;
+    private List<String> type;
+    private List<String> children;
 
 }

@@ -1,9 +1,12 @@
 package com.las.lasbackendprojectmanagerialaudits4500.service.db.redis.impl;
 import com.las.lasbackendprojectmanagerialaudits4500.service.db.redis.RedisTools;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @author sunyinuo
  */
 @Service
+@Slf4j
 public class RedisToolsImpl implements RedisTools {
 
     @Resource
