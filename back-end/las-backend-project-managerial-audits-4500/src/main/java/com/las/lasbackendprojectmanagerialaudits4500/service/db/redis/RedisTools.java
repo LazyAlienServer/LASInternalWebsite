@@ -40,7 +40,7 @@ public interface RedisTools{
      * @param prex key
      * @return result
      */
-    List<String> getByPrex(String prex);
+     List getByPrex(String prex);
 
     /**
      * 删除

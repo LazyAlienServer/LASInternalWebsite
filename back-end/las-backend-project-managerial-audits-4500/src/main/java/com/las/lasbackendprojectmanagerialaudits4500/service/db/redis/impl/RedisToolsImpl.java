@@ -1,4 +1,6 @@
 package com.las.lasbackendprojectmanagerialaudits4500.service.db.redis.impl;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.las.lasbackendprojectmanagerialaudits4500.service.db.redis.RedisTools;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -21,6 +23,8 @@ public class RedisToolsImpl implements RedisTools {
 
     @Resource
     public RedisTemplate<String,Object> redisTemplate;
+
+    private final static ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * 插入数据
@@ -47,6 +51,7 @@ public class RedisToolsImpl implements RedisTools {
         return redisTemplate.opsForValue().get(key);
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
     public List<String> getByPrex(String prex){
         List<String> getByKey = new ArrayList<>();

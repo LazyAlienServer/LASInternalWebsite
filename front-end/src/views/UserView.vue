@@ -6,14 +6,9 @@
       <div class="player_Avatar">
         <div class="player_Avatar_circle">
           <div class="player_Avatar_img">
-            <svg fill="none" height="36.000091552734375" viewBox="0 0 35.93017578125 36.000091552734375"
-                 width="35.93017578125" xmlns="http://www.w3.org/2000/svg">
-              <path
-                  d="M6.11 11.2201C6.11 14.9601 8.05 18.2701 11.03 20.3101C8.83 21.1901 6.91 22.4101 5.26 23.9801C3.61 25.5401 2.32 27.3601 1.41 29.3801C0.52 31.3601 0.05 33.4701 0 35.6301C0 35.8301 0.17 36.0001 0.38 36.0001L3.25 36.0001C3.46 36.0001 3.63 35.8401 3.63 35.6501C3.73 32.1501 5.21 28.8901 7.83 26.4101C10.53 23.8401 14.13 22.4301 17.96 22.4301C21.79 22.4301 25.39 23.8401 28.1 26.4101C30.72 28.8901 32.2 32.1501 32.3 35.6501C32.3 35.8401 32.47 36.0001 32.68 36.0001L35.55 36.0001C35.76 36.0001 35.93 35.8301 35.93 35.6301C35.88 33.4701 35.41 31.3601 34.52 29.3801C33.61 27.3501 32.32 25.5301 30.67 23.9801C29.02 22.4101 27.1 21.1901 24.96 20.3301C27.88 18.2701 29.81 14.9601 29.81 11.2201C29.81 5.0201 24.51 0.0001 17.96 0.0001C11.42 0.0001 6.11 5.0201 6.11 11.2201ZM23.7763 16.7172C25.3263 15.2472 26.1863 13.2872 26.1863 11.2172C26.1863 9.1372 25.3263 7.1872 23.7763 5.7172C22.2163 4.2472 20.1563 3.4372 17.9663 3.4372C15.7763 3.4372 13.7063 4.2472 12.1563 5.7172C10.5963 7.1872 9.7463 9.1372 9.7463 11.2172C9.7463 13.2872 10.5963 15.2472 12.1563 16.7172C13.7063 18.1872 15.7763 18.9972 17.9663 18.9972C20.1563 18.9972 22.2163 18.1872 23.7763 16.7172Z"
-                  fill-rule="evenodd" opacity="0.65"
-                  style="fill:#383838"></path>
-            </svg>
+            <el-avatar :size="50"  :src="avatar" />
           </div>
+
           <div class="player_info">
             <p id="userName" style="font-size: 20px; margin-bottom: 8px">{{ UserName }}</p>
             <p id="uid" style="font-size: 18px">uid:{{UserId}}</p>
@@ -130,8 +125,6 @@
   z-index: 1;
   border: unset !important;
   box-shadow: unset;
-  left: 8px;
-  top: 5px;
   width: 20px;
   height: 20px;
   background-size: cover;
@@ -256,6 +249,7 @@ let UserName: Ref<string | undefined> = ref("");
 let UserId :Ref<number | undefined> = ref(0)
 let route = useRouter();
 let transitionName = ref("view");
+let avatar = ref("https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png")
 
 function init() {
   if (getCookie('token') != undefined) {
@@ -283,6 +277,13 @@ function setPage(page: number) {
   }
 }
 
+function getAvatar(){
+  request.post('usersignin/crud/getAvatarByToken?token='+getCookie('token'), {
+  }).then(r => {
+    avatar.value = String(r.data)
+  });
+}
+
 function setElementBgColor(id: string, color: string) {
   let element = document.getElementById(id);
   if (element != null) {
@@ -293,5 +294,6 @@ function setElementBgColor(id: string, color: string) {
 onMounted(() => {
   setPage(1);
   init();
+  getAvatar();
 });
 </script>

@@ -1,5 +1,6 @@
 // index.ts
 import type {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
+import {getCookie} from "typescript-cookie";
 import axios from "axios";
 
 type Result<T> = {
@@ -16,7 +17,7 @@ export class Request {
     baseConfig: AxiosRequestConfig = {
         baseURL: "http://localhost:9000/",
         timeout: 60000,
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/json','token' : getCookie('token')}
     };
 
     constructor(config: AxiosRequestConfig) {
