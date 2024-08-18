@@ -13,9 +13,8 @@ create table user
     probation     text                             not null,
     administrator int                              not null,
     slat          int                              not null,
-    qq            text                             not null
+    qq            text                             not null,
+    avatar        text                             null
 )
     collate = utf8mb3_bin;
-
-
 

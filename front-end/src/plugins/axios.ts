@@ -17,7 +17,7 @@ export class Request {
     baseConfig: AxiosRequestConfig = {
         baseURL: "http://localhost:9000/",
         timeout: 60000,
-        headers: {'Content-Type': 'application/json','token' : getCookie('token')}
+        headers: {'Content-Type': 'application/json','token' : getCookie('token'),'Access-Control-Allow-Origin': '*'}
     };
 
     constructor(config: AxiosRequestConfig) {
