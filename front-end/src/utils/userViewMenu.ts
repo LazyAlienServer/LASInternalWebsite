@@ -69,7 +69,7 @@ userViewMenu.value.push({
     id: 5,
     name: "projectInfo",
     route: "/projectInfo",
-    component: () => import(/* webpackChunkName: "about" */ '../views/ProjectView.vue'),
+    component: () => import(/* webpackChunkName: "about" */ '../views/UserPageView.vue'),
     icon: {
         width: "36.26611328125",
         height: "43.79620361328125",

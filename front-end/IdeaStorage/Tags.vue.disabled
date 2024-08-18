@@ -1,0 +1,128 @@
+<template>
+  <div class="tags" id="tags">
+    <div class="tags-group" :style="groupStyle" v-for="tagsGroup in tagGroups">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           width="100%" height="50" :viewBox="'0 0 '+'16'" fill="none" class="tag-svg">
+
+        <g v-for="tag in tagsGroup" :id="tag">
+          <rect height="10" width="100" :x="tagsGroup.findIndex(element => element == tag)" y="0" :fill="getColor(tag)"></rect>
+          <text x="0" y="10" font-weight="normal" font-size="12" fill="white">{{tag}}</text>
+        </g>
+      </svg>
+<!--      <div class="tags-group-item" :style="[tagGroupItemStyle,{backgroundColor:getColor(tag)}]" v-for="tag in tagsGroup">-->
+<!--          <p class="tag" :style="tagStyle" >{{ tag }}</p>-->
+<!--      </div>-->
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import {reactive} from "vue";
+
+// 配置组件参数列表
+export interface TagsProps {
+  tagGroups?: string[][],
+  tagsColor?: { key: string, color: string }[],
+  radius?: string,
+
+  groupGap?: string,
+  itemGap?: string,
+
+  tagsFontSize?: string,
+  fontFamily?: string,
+  fontWeight?: string,
+
+  textColor?: string,
+}
+//配置组件参数默认值
+const props = withDefaults(defineProps<TagsProps>(), {
+  tagGroups: () => [[]],
+  tagsColor: () => [],
+  tagsFontSize: '16px',
+  fontFamily: 'Microsoft YaHei UI',
+  fontWeight: 'normal',
+  radius: '4px',
+  groupGap: '2px 10px 2px 0',
+  itemGap: '0 5px',
+  textColor: 'white',
+})
+// 标签样式
+const tagStyle = reactive({
+
+})
+// 标签组样式
+const tagGroupItemStyle = reactive({
+  fontSize: props.tagsFontSize,
+  fontFamily: props.fontFamily,
+  fontWeight: props.fontWeight,
+  borderRadius: props.radius,
+  padding: props.itemGap,
+});
+// 标签组整体样式
+const groupStyle = reactive({
+  color: props.textColor,
+  margin: props.groupGap,
+});
+
+function getColor(tag: string) {
+  let color = '#709ba2';
+  props.tagsColor.forEach(element => {
+    if (element.key == tag) {
+      color = element.color;
+    }
+  })
+  return color;
+}
+
+//index是组索引
+function getTagInGroupX(tag: string,index: number) {
+  let x = 0;
+  //props.itemGap
+  let indexInGroup = props.tagGroups[index].findIndex((element: string)=>element==tag);
+  if (indexInGroup==0) return 0;
+  props.tagGroups[index-1]
+  let tags = document.getElementById('tags');
+  if(tags){
+    x = props.itemGap.split(' ')[0];
+    //x = getTagInGroupX(props.tagGroups[index-1][indexInGroup-1],index-1) + parseInt(props.itemGap.split(' ')[0]) + tags.ownerDocument.getElementById(props.tagGroups[index-1][indexInGroup-1]).getBoundingClientRect().width;
+  }
+  return x;
+}
+
+function init(){
+  // if (tags.value){
+  //   let tagsRoot = tags.value as HTMLElement;
+  //   tagsRoot.childNodes.forEach(element => {
+  //     console.log(element)
+  //   })
+  // }else setTimeout(init, 100)
+}
+init()
+
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.tags{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.tags-group{
+  display: flex;
+  position: relative;
+  flex-direction: row;
+}
+
+.tags-group-item{
+  position: absolute;
+  width: max-content;
+  height: max-content;
+}
+
+.tag{
+  text-align: center;
+}
+
+</style>

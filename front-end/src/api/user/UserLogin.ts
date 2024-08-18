@@ -30,6 +30,24 @@ function UserLogin(this: any, username: string | undefined, password: string | u
                 duration: 800
             });
         }
+    }).catch((e) => {
+        if (e.data && 'status' in e.data) {
+            ElNotification({
+                title: "提示",
+                message: "LASLog : 用户登录失败-" + e.data.status != null ? e.data.status : "unknown error",
+                type: "error",
+                customClass: "UserInfoError",
+                duration: 800
+            });
+        } else {
+            ElNotification({
+                title: "提示",
+                message: "LASLog : unknown error",
+                type: "error",
+                customClass: "ConnectError",
+                duration: 800
+            });
+        }
     });
 }
 

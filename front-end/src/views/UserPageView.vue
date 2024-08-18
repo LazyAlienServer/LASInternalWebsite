@@ -14,41 +14,33 @@
         </div>
       </div>
       <div class="info">
-        <div>
-          <div class="userName">UserName</div>
-          <div class="uid">uid:123456</div>
-
-          <div class="introduction">
-            <button class="I_edit" @click="setIntroduction=true">
-              <svg fill="none" height="19.54669189453125" viewBox="0 0 17.389892578125 19.54669189453125"
-                   width="17.389892578125" xmlns="http://www.w3.org/2000/svg"
-                   xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path id="edit"
-                      d="M17.17 3.45999C17.39 3.66999 17.39 4.00999 17.17 4.21999L4.17 17.22C4.07 17.33 3.93 17.38 3.79 17.38L0.54 17.38C0.24 17.38 0 17.14 0 16.84L0 13.59C0 13.45 0.06 13.31 0.16 13.21L13.16 0.20999C13.37 -9.76771e-06 13.71 -9.76771e-06 13.92 0.20999L17.17 3.45999ZM16.0235 3.84079L13.5435 1.36079L1.0835 13.8208L1.0835 16.3008L3.5635 16.3008L16.0235 3.84079ZM11.93 19.0067C11.93 19.3067 11.69 19.5467 11.39 19.5467L0.54 19.5467C0.24 19.5467 0 19.3067 0 19.0067C0 18.7067 0.24 18.4667 0.54 18.4667L11.39 18.4667C11.69 18.4667 11.93 18.7067 11.93 19.0067Z"
-                      fill="#000000"
-                      fill-rule="evenodd"></path>
-              </svg>
-            </button>
-            <!--              <el-dialog class="Introduction" v-model="setIntroduction" title="设置简介" align-center>-->
-            <!--                    <div class="dialog-footer">-->
-            <!--                      <el-button @click="setIntroduction=false">取消</el-button>-->
-            <!--                      <el-button type="primary" @click="setIntroduction=false">-->
-            <!--                        确认-->
-            <!--                      </el-button>-->
-            <!--                    </div>-->
-            <!--              </el-dialog>-->
-          </div>
-          <div class="userTag">
-            <div v-for="tags in tagGroup" class="tagGroups">
-              <div v-for="tag in tags"
-                   :style="{backgroundColor: getColor(tag),paddingRight:getTagStyle(tag).paddingRight+'px',left:getTagStyle(tag).left+'px'}"
-                   class="tags">
-                <span class="tag">{{ tag }}</span>
-              </div>
-            </div>
-          </div>
+        <div class="userName">{{ getSessionStorageItem(SessionStorageKeys.userName) }}</div>
+        <div class="uid">uid:{{ getSessionStorageItem(SessionStorageKeys.userId) }}</div>
+        <!--        <input v-model="introduction" id="introduction-input" placeholder="简介"></input>-->
+        <div id="user_Introduction">
+          <p id="introduction_text">{{ introduction }}</p>
+          <el-icon id="introductionEditIcon" @click="setIntroduction()">
+            <EditPen/>
+          </el-icon>
+          <el-dialog v-model="setIntroductionView" append-to-body
+                     style="border-radius: 10px;background-color: #fae7e7CC"
+                     top="40vh" width="40vw">
+            <template #header>
+              <div id="introductionEditView-header">修改简介</div>
+            </template>
+            <el-input v-model="setIntroductionTemp" placeholder="简介"
+                      @keyup.enter="setIntroductionConfirm()"></el-input>
+            <template #footer>
+              <el-button id="introductionEditView-cancel" @click="setIntroductionView = false">取消</el-button>
+              <el-button id="introductionEditView-confirm" type="primary" @click="setIntroductionConfirm()">
+                确认
+              </el-button>
+            </template>
+          </el-dialog>
         </div>
+        <Tags id="user-tag" :radius="'50px'" :tag-groups=tagGroup :tags-color=tagsColor :tags-font-size="'15px'"></Tags>
       </div>
+
     </div>
     <div class="line"></div>
   </div>
@@ -89,40 +81,102 @@
   position: relative;
   flex-direction: column;
   padding-left: 45px;
-  font-family: "Noto Sans SC";
+  font-family: "Noto Sans SC", sans-serif;
   font-weight: normal;
+  justify-content: space-around;
+  height: auto;
 }
 
 
 .userName {
   font-size: 48px;
+  transform: translateX(-3px);
 }
 
 .uid {
-  font-size: 20px;
+  margin: 5px 0 5px 0;
+  font-size: 1.6ch;
   color: #383838;
 }
 
-.introduction {
-  font-size: 20px;
-  color: #383838;
+#user_Introduction {
   display: flex;
   flex-direction: row;
+}
+
+#introduction_text {
+  overflow-x: revert;
+  min-width: max-content;
+  padding-bottom: 4px;
+
+  font-size: 18px;
+  color: #383838;
+  display: flex;
+  flex-wrap: wrap;
   padding-top: 5px;
   align-items: flex-end;
 }
 
-.I_edit {
-  background-color: transparent;
-  border: none;
-  margin-top: 10px;
-  margin-left: 10px;
-  user-select: all;
+#introductionEditIcon {
+  height: 100%;
+  display: flex;
+  align-content: flex-end;
+  bottom: -2px;
   cursor: pointer;
+  color: #383838;
+  transition: color 0.3s;
 }
 
-.I_edit:hover #edit {
-  fill: #5b80b2;
+#introductionEditIcon:hover {
+  color: #b63428;
+}
+
+#introductionEditView-header {
+  font-size: 1.5vw;
+  font-weight: bold;
+  @media screen and (max-width: 600px) {
+    font-size: 3vw;
+  }
+}
+
+#introductionEditView-cancel {
+  color: #323334;
+  background-color: transparent;
+  border: #96a2af solid 1px;
+  box-shadow: 2px 2px 3px #888888;
+  transition: all 0.3s;
+}
+
+#introductionEditView-cancel:hover {
+  transform: translate3d(1px, 1px, 1px);
+}
+
+#introductionEditView-cancel:after:hover {
+  height: 100%;
+  width: 100%;
+  background-color: #46a3e7;
+}
+
+#introductionEditView-confirm {
+  color: #e7e7ec;
+  background-color: #46a3e7;
+  border: #96a2af solid 1px;
+  box-shadow: 2px 2px 3px #888888;
+  transition: all 0.3s;
+}
+
+#introductionEditView-confirm:hover {
+  transform: translate3d(1px, 1px, 1px);
+}
+
+
+#introduction-input {
+  font-size: large;
+  width: max-content;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  margin: 5px 0 5px 0;
 }
 
 .userAvatarBorder {
@@ -159,43 +213,13 @@
   background-color: transparent;
 }
 
-.Introduction >>> .el-dialog {
-  background-color: black;
-}
-
-.userTag {
-  margin-top: 10px;
+#user-tag {
+  margin: 10px 0 0 0;
   display: flex;
   position: relative;
-  flex-direction: row;
 }
 
-.tagGroups {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  height: min-content;
-  margin-right: 10px;
-}
 
-.tags {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  height: min-content;
-  border-radius: 21.5px;
-  text-align: center;
-  min-width: max-content;
-  justify-content: center;
-}
-
-.tag {
-  padding-left: 13px;
-  padding-right: 13px;
-  height: 27px;
-  color: white;
-  margin-top: 3px;
-}
 
 .line {
   display: flex;
@@ -211,66 +235,37 @@
 <script lang="ts" setup>
 
 import {onMounted, ref} from "vue";
+import Tags from "@/components/Tags.vue";
+import {getSessionStorageItem, SessionStorageKeys} from "../store/sessionStorageManager";
+import {EditPen} from "@element-plus/icons-vue";
 //import isMenuLayout from "@/utils/isMenuLayout";
 
-const setIntroduction = ref(false);
 
-let tagGroup: string[][] = [["管理员"], ["红石", "储电"]];
-let tagsColor: { key: string, color: string }[] = [{key: "红石", color: "#B02A2A"}, {
-  key: "储电",
-  color: "#872323"
-}, {key: "建筑", color: "#32e82c"}, {key: "管理员", color: "#d2b72f"}];
-let Introduction = ref("");
+let tagGroup: string[][] = [["管理员"], ["红石", "储电"], ["红石1", "储电2"]];
+let tagsColor: { key: string, color: string }[] =
+    [
+      {key: "红石", color: "#B02A2A"},
+      {key: "储电", color: "#872323"},
+      {key: "建筑", color: "#32e82c"},
+      {key: "管理员", color: "#d2b72f"}
+    ];
 
-function setIntroductionContent(value: boolean) {
-  setIntroduction.value = value;
+let introduction = ref("简介");
+let setIntroductionTemp = ref("简介");
+let setIntroductionView = ref(false);
 
+function setIntroduction() {
+  setIntroductionView.value = true;
+  setIntroductionTemp.value = introduction.value;
 }
 
-function getColor(tag: string) {
-  let color = "rgba(86,173,252,1)";
-  tagsColor.forEach(element => {
-    if (element.key == tag) {
-      color = element.color
-    }
-  });
-  return color;
-}
-
-function getTagStyle(tag: string) {
-  let paddingRight = 0;
-  let left = 0;
-  tagGroup.forEach(element => {
-    if (element.includes(tag)) {
-      element.indexOf(tag) == element.length - 1 ? paddingRight = 0 : paddingRight = 25;
-      if (element.indexOf(tag) != 0) {
-        for (let i = 0; i < element.indexOf(tag); i++) {
-          left -= 30;
-        }
-      } else left = 0;
-      console.log(tag + ":" + left);
-    }
-  })
-  return {paddingRight, left};
-}
-
-
-function initTag() {
-
-}
-
-function init() {
-  initTag();
+function setIntroductionConfirm() {
+  introduction.value = setIntroductionTemp.value;
+  setIntroductionView.value = false;
 }
 
 onMounted(() => {
-  init();
+
 });
-// isMenuLayout.addCheckIsMenuLayout("UserPageSetIntroduction");
-//
-// function introduction(value:boolean){
-//   setIntroduction.value=value;
-//   isMenuLayout.setCheckIsMenuLayout("UserPageSetIntroduction", value);
-// }
 
 </script>

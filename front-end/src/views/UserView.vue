@@ -242,7 +242,9 @@ import {getCookie} from "typescript-cookie";
 import UserViewMenu from "@/utils/userViewMenu";
 import {useRouter} from "vue-router";
 import router from "@/router";
-import {request} from "@/main";
+import getUserAvatar from "@/api/user/userInfo/getUserAvatar";
+import getUserNameByToken from "@/api/user/userInfo/getUserNameByToken";
+import getUserIdByToken from "@/api/user/userInfo/getUserIdByToken";
 
 let Page = 1;
 let UserName: Ref<string | undefined> = ref("");
@@ -253,14 +255,16 @@ let avatar = ref("https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epn
 
 function init() {
   if (getCookie('token') != undefined) {
-    request.post('usersignin/crud/getUserNameByToken/?token='+getCookie('token'), {
-    }).then(r => {
-      UserName.value = String(r.data)
-    });
-    request.post('usersignin/crud/getUserIdByToken/?token='+getCookie('token'), {
-    }).then(r => {
-      UserId.value = Number(r.data)
-    });
+    getUserNameByToken(UserName);
+    getUserIdByToken(UserId);
+    // request.post('usersignin/crud/getUserNameByToken/?token='+getCookie('token'), {
+    // }).then(r => {
+    //   UserName.value = String(r.data)
+    // });
+    // request.post('usersignin/crud/getUserIdByToken/?token='+getCookie('token'), {
+    // }).then(r => {
+    //   UserId.value = Number(r.data)
+    // });
   } else {
     router.replace("/");
   }
@@ -278,10 +282,7 @@ function setPage(page: number) {
 }
 
 function getAvatar(){
-  request.post('usersignin/crud/getAvatarByToken?token='+getCookie('token'), {
-  }).then(r => {
-    avatar.value = String(r.data)
-  });
+  getUserAvatar(avatar)
 }
 
 function setElementBgColor(id: string, color: string) {
@@ -296,4 +297,5 @@ onMounted(() => {
   init();
   getAvatar();
 });
+
 </script>

@@ -12,7 +12,8 @@
               <el-text class="text">账户验证</el-text>
             </el-row>
             <el-row id="user" justify="center">
-              <el-input v-model="username" class="in" clearable maxlength=16 minlength=3 placeholder="用户名">
+              <el-input v-model="username" class="in" clearable maxlength=16 minlength=3 placeholder="用户名"
+                        @keyup.enter="Login()">
                 <template #prefix>
                   <el-icon class="el-input__icon">
                     <svg fill="none" height="31" viewBox="0 0 32.1923828125 31"
@@ -31,6 +32,7 @@
             </el-row>
             <el-row id="user" justify="center" style="margin-top: 57px">
               <el-input v-model="password" class="in" clearable maxlength=18 minlength=6 placeholder="密码"
+                        @keyup.enter="Login()"
                         show-password type="password">
                 <template #prefix>
                   <el-icon class="el-input__icon">
@@ -283,15 +285,45 @@
   color: #ce8cff;
 }
 
+@media (max-width: 690px) {
+  .el-container {
+    box-shadow: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login {
+    background-image: none;
+    background-color: white;
+  }
+
+  #form {
+    width: 100%;
+  }
+
+  #user {
+    width: 70%;
+    left: 15%;
+  }
+
+  #login {
+    width: 64%;
+  }
+
+  #activate {
+    margin-right: 15%;
+  }
+}
 </style>
 
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
-import UserLogin from "@/api/UserLogin";
-import {request} from '@/main'
+import UserLogin from "@/api/user/UserLogin";
 import {ElNotification} from "element-plus";
-import {getCookie} from "typescript-cookie";
-import router from "@/router";
+import getLoginState from "@/api/user/getLoginState";
 
 let username = ref("");
 let password = ref("");
@@ -327,14 +359,15 @@ function Login() {
 }
 
 function init() {
-  request.post('usersignin/crud/getLoginState/?token='+getCookie('token'), {
-  }).then(r => {
-    if (getCookie('token') != undefined) {
-      if(Boolean(r.data)){
-        router.replace("/user");
-      }
-    }
-  });
+  getLoginState()
+  // request.post('usersignin/crud/getLoginState/?token='+getCookie('token'), {
+  // }).then(r => {
+  //   if (getCookie('token') != undefined) {
+  //     if(Boolean(r.data)){
+  //       router.replace("/user");
+  //     }
+  //   }
+  // });
 }
 
 onMounted(() => {

@@ -8,6 +8,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
     "@types/axios": "^0.14.0",
     "@types/js-cookie": "^3.0.6",
     "axios": "^1.6.3",

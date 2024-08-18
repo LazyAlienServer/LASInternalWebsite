@@ -14,20 +14,6 @@ const routes: Array<RouteRecordRaw> = [
         name: 'user',
         component: () => import(/* webpackChunkName: "about" */ '../views/UserView.vue'),
         children: getuserViews()
-        // children:[
-        //   {
-        //     path:'/main',
-        //     name:'main',
-        //     component:() => import(/* webpackChunkName: "about" */ '../views/MainPageView.vue'),
-        //     meta:{index:1}
-        //   },
-        //   {
-        //     path:'/userinfo',
-        //     name:'userinfo',
-        //     component:() => import(/* webpackChunkName: "about" */ '../views/UserPageView.vue'),
-        //     meta:{index:4}
-        //   }
-        // ]
     }, {
         path: '/:pathMatch(.*)*',
         redirect: '/error/404',

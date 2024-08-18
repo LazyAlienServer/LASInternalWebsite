@@ -1,7 +1,7 @@
 // index.ts
 import type {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
-import {getCookie} from "typescript-cookie";
 import axios from "axios";
+import {getCookie} from "typescript-cookie";
 
 type Result<T> = {
     code: number;
@@ -15,7 +15,7 @@ export class Request {
     instance: AxiosInstance;
     // 基础配置，url和超时时间
     baseConfig: AxiosRequestConfig = {
-        baseURL: "http://localhost:9000/",
+        baseURL: "/api/",
         timeout: 60000,
         headers: {'Content-Type': 'application/json','token' : getCookie('token'),'Access-Control-Allow-Origin': '*'}
     };
@@ -87,12 +87,6 @@ export class Request {
                         message = `连接出错(${err.response.status})!`;
                 }
                 // 这里错误消息可以使用全局弹框展示出来
-                // 比如element plus 可以使用 ElMessage
-                // ElMessage({
-                //   showClose: true,
-                //   message: `${message}，请检查网络或联系管理员！`,
-                //   type: "error",
-                // });
                 // 这里是AxiosError类型，所以一般我们只reject我们需要的响应即可
                 return Promise.reject(err.response);
             }
