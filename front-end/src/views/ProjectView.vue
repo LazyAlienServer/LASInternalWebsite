@@ -113,7 +113,7 @@ function getUserNameByToken(token: string): string {
     request
         .post("usersignin/crud/getUserNameByToken/?token=" + token, {})
         .then((r) => {
-            return string(r.data);
+            return String(r.data);
         });
     return "";
 }
@@ -140,7 +140,7 @@ function initializeProjects() {
                     approvedProjects.push(pro);
                 } else if (
                     pro.auditor ==
-                    getUserNameByToken(string(getCookie("token")))
+                    getUserNameByToken(String(getCookie("token")))
                 ) {
                     myApprovedProjects.push(pro);
                 } else if (!pro.pass && pro.auditor != "") {
