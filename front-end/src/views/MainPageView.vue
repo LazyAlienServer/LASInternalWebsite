@@ -4,8 +4,7 @@
     <div class="circle2"></div>
     <div class="circle1"></div>
     <div class="background"></div>
-    <div class="LAS">LAS</div>
-    <div class="LOG">LOG</div>
+    <div class="title"><p>LAS</p><p>LOG</p></div>
     <div class="Lazy_Alien_Server">Lazy Alien Server</div>
   </div>
 </template>
@@ -29,7 +28,7 @@
 
 }
 
-.LOG{
+.title{
   position: fixed;
   left: 720px;
   top: 150px;
@@ -41,29 +40,12 @@
   -webkit-text-stroke: 1px #ffffff;
 
   text-shadow: -4px 4px 4px  rgba(0, 0, 0, 0.25);
-  font-size: 120px;
+  font-size: 160px;
   font-weight: 900;
   letter-spacing: 0px;
   line-height: 187.52px;
   color: rgba(129, 148, 240, 1);
-}
-
-.LAS{
-  position: fixed;
-  left: 640px;
-  top: 150px;
-  opacity: 1;
-  //border: 1px solid rgba(224, 209, 235, 1);
-  -webkit-text-stroke: 1px #ffffff;
-
-  text-shadow: -4px 4px 4px  rgba(0, 0, 0, 0.25);
-  /** 文本1 */
-  font-size: 120px;
-  font-weight: 900;
-  letter-spacing: 0px;
-  line-height: 187.52px;
-  color: rgba(162, 99, 207, 1);
-
+  display: flex;
 }
 
 .background{

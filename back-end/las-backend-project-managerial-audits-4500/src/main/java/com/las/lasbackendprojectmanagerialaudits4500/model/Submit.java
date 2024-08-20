@@ -19,7 +19,7 @@ public class Submit {
     private List<String> authors;
     private String start_time;
     private Place place;
-    private boolean innovation;
+    private Boolean innovation;
 
     private Boolean pass;
     private String auditor;
