@@ -1,5 +1,4 @@
 <template>
-  <Background></Background>
   <div class="user">
     <div class="left_menu_bg"></div>
     <!--    <div :class={overlay:isMenuLayout.isMenuLayout.value}></div>-->
@@ -7,12 +6,16 @@
       <div class="player_Avatar">
         <div class="player_Avatar_circle">
           <div class="player_Avatar_img">
-            <el-avatar :size="50"  :src="avatar" />
+            <el-avatar :size="45" :src="avatar" @error="() => true">
+              <img
+                  src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+              />
+            </el-avatar>
           </div>
 
           <div class="player_info">
             <p id="userName" style="font-size: 20px; margin-bottom: 8px">{{ UserName }}</p>
-            <p id="uid" style="font-size: 18px">uid:{{UserId}}</p>
+            <p id="uid" style="font-size: 18px">uid:{{ UserId }}</p>
           </div>
         </div>
       </div>
@@ -48,8 +51,7 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  background-color: transparent;
-//background-color: rgb(231, 228, 241);
+  background-color: rgb(231, 228, 241);
   padding: 0;
   flex-shrink: 0;
 }
@@ -248,13 +250,10 @@ import getUserAvatar from "@/api/user/userInfo/getUserAvatar";
 import getUserNameByToken from "@/api/user/userInfo/getUserNameByToken";
 import getUserIdByToken from "@/api/user/userInfo/getUserIdByToken";
 import {SessionStorageKeys, setSessionStorageItem} from "@/store/sessionStorageManager";
-import Background from "@/components/Background.vue";
 
-let isMobileSideBar = ref(document.body.clientWidth < 768)
-let shouldShowSideBar = ref(false)
 let Page = 1;
 let UserName: Ref<string | undefined> = ref("");
-let UserId :Ref<number | undefined> = ref(0)
+let UserId: Ref<number | undefined> = ref(0)
 let route = useRouter();
 let transitionName = ref("view");
 let avatar = ref("https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png")
@@ -263,14 +262,6 @@ function init() {
   if (getCookie('token') != undefined) {
     getUserNameByToken(UserName);
     getUserIdByToken(UserId);
-    // request.post('usersignin/crud/getUserNameByToken/?token='+getCookie('token'), {
-    // }).then(r => {
-    //   UserName.value = String(r.data)
-    // });
-    // request.post('usersignin/crud/getUserIdByToken/?token='+getCookie('token'), {
-    // }).then(r => {
-    //   UserId.value = Number(r.data)
-    // });
   } else {
     router.replace("/");
   }
@@ -287,7 +278,7 @@ function setPage(page: number) {
   }
 }
 
-function getAvatar(){
+function getAvatar() {
   getUserAvatar(avatar)
   setSessionStorageItem(SessionStorageKeys.avatar, avatar.value)
 }
@@ -303,11 +294,6 @@ onMounted(() => {
   setPage(1);
   init();
   getAvatar();
-  isMounted.value = true
-  window.onresize = () => {
-    isMobileSideBar.value = document.body.clientWidth < 768
-    shouldShowSideBar.value = shouldShowSideBar.value && isMobileSideBar.value
-  }
 });
 
 </script>

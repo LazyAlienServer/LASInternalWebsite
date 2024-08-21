@@ -1,0 +1,70 @@
+.userInfo {
+    top: 75px;
+    position: relative;
+    display: flex;
+    text-align: left;
+    height: min-content;
+    width: 75%;
+    background-color: transparent;
+    user-select: none;
+    flex-wrap: wrap;
+}
+
+.info {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding-left: 45px;
+    font-family: "Noto Sans SC", sans-serif;
+    font-weight: normal;
+    justify-content: space-around;
+    height: auto;
+}
+
+
+.userName {
+    font-size: 48px;
+    transform: translateX(-3px);
+}
+
+.uid {
+    margin: 5px 0 5px 0;
+    font-size: 20px;
+    color: #383838;
+}
+
+#introduction-input {
+    font-size: large;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    margin: 5px 0 5px 0;
+    border-bottom: 2px solid rgba(0, 0, 0, 0%);
+    transition: all 0.5s;
+    padding-bottom: 3px;
+}
+
+#introduction-input:hover {
+    border-bottom: 2px solid rgba(45, 45, 45);
+}
+
+#introduction-input:focus {
+    border-bottom: 2px solid rgba(45, 45, 45);
+}
+
+
+#user-tag {
+    margin: 10px 0 0 0;
+    display: flex;
+    position: relative;
+}
+
+.line {
+    display: flex;
+    position: relative;
+    background-color: #808080;
+    margin-top: 100px;
+    height: 2px;
+    min-width: 75%;
+}
