@@ -95,4 +95,40 @@ public class FileUploadServiceImpl implements FileUploadService {
            return ResultUtil.result(ResultEnum.SERVER_ERROR.getCode(),null);
        }
     }
+
+    /**
+     * 上传minecraft头像
+     * @param files file
+     * @param id id
+     * @return 统一返回
+     */
+    @Override
+    public Result uploadMinecraftAvatar(MultipartFile[] files, String id) {
+        FileUpload fileUpload = new FileUpload();
+        for (MultipartFile file : files) {
+            //id
+            fileUpload.setId(id);
+            //文件名
+            fileUpload.setName(file.getOriginalFilename());
+            //时间
+            fileUpload.setCreatedTime(LocalDateTime.now());
+            //内容
+            try {
+                fileUpload.setContent(new Binary(file.getBytes()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //类型
+            fileUpload.setContentType(file.getContentType());
+            //大小
+            fileUpload.setSize(file.getSize());
+            //项目名
+            fileUpload.setToken(id);
+        }
+
+        //存
+        mongoTemplate.save(fileUpload);
+
+        return ResultUtil.result(ResultEnum.SUCCESS.getCode(), fileUpload,null);
+    }
 }

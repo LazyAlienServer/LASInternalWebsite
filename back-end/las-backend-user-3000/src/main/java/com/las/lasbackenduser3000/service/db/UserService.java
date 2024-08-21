@@ -115,6 +115,13 @@ public interface UserService {
     List<User> getUserByAdministrator(int administrator);
 
     /**
+     * 根据minecraftName获取用户
+     * @param minecraftName minecraftName
+     * @return user
+     */
+    User getUserByMinecraftName(String minecraftName);
+
+    /**
      * 更新
      * @param user 实体类
      * @return 影响

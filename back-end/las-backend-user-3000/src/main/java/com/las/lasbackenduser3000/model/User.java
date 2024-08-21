@@ -18,6 +18,8 @@ public class User {
     private long time;
     /**用户名**/
     private String userName;
+    /**minecraftName**/
+    private String minecraftName;
     /**密码**/
     private String userPassword;
     /**简介**/

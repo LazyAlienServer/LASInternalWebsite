@@ -16,4 +16,11 @@ public interface FileUploadService {
      */
     Result fileUpload (MultipartFile[] files, String token);
 
+    /**
+     * 上传minecraft头像
+     * @param files file
+     * @param id id
+     * @return 统一返回
+     */
+    Result uploadMinecraftAvatar (MultipartFile[] files,String id);
 }

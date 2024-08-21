@@ -14,7 +14,7 @@ class UserServiceImplTest {
 
     @Test
     void addUser() {
-        User user = new User(0,100,"Martin","Martin","苦逼开发","developer","1222","1",1,"0",1,-100,"2192519304","");
+        User user = new User(0,100,"Martin","tanh_Heng","Martin","苦逼开发","developer","1222","1",1,"0",1,-100,"2192519304","");
         int addUser = userService.addUser(user);
         assert addUser == 1;
     }
