@@ -68,7 +68,6 @@ interface Project {
     pass: boolean;
     auditor: string;
     note: string;
-    picture: [string];
     type: [number];
     children: [number];
 }

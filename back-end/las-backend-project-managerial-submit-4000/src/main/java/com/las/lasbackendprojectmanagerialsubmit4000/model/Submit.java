@@ -25,7 +25,6 @@ public class Submit  {
     private String auditor;
 
     private String note;
-    private List<String> picture;
     private List<String> type;
     private List<String> children;
 }
