@@ -3,56 +3,33 @@
     <div class="m"></div>
     <div class="circle2"></div>
     <div class="circle1"></div>
-    <div class="background"></div>
-    <div class="title"><p>LAS</p><p>LOG</p></div>
-    <div class="Lazy_Alien_Server">Lazy Alien Server</div>
+    <el-container class="title-container">
+      <el-col>
+        <div class="title"><p style="color: #A263CF">LAS</p><p>&nbsp;</p><p style="color: #8194F0">LOG</p></div>
+        <div class="bar"></div>
+        <div class="subtitle">Lazy Alien Server</div>
+      </el-col>
+    </el-container>
   </div>
 </template>
 
 <style scoped>
-.Lazy_Alien_Server{
-  position: fixed;
-  left: 580px;
-  top: 290px;
-  width: 677px;
-  height: 80px;
-  opacity: 1;
-  /** 文本1 */
-  font-size: 45px;
-  font-weight: 400;
-  letter-spacing: 9px;
-  line-height: 79.56px;
-  color: rgba(166, 166, 166, 1);
-  text-align: center;
-  vertical-align: top;
-
-}
 
 .title{
-  position: fixed;
-  left: 720px;
-  top: 150px;
-  width: 687px;
-  height: 188px;
-  opacity: 1;
 
-  //border: 1px solid rgba(224, 209, 235, 1);
   -webkit-text-stroke: 1px #ffffff;
-
+  width: max-content;
   text-shadow: -4px 4px 4px  rgba(0, 0, 0, 0.25);
   font-size: 160px;
   font-weight: 900;
-  letter-spacing: 0px;
-  line-height: 187.52px;
-  color: rgba(129, 148, 240, 1);
   display: flex;
 }
 
-.background{
+.title-container{
   position: fixed;
-  left: 200px;
-  top: 70px;
-  width: 1100px;
+  left: 10.89%;
+  top: 11.85%;
+  width: 80.67%;
   height: 580px;
   opacity: 0.9;
   border-radius: 60px;
@@ -61,6 +38,12 @@
   border: 3px solid rgba(88, 125, 255, 0.35);
 
   backdrop-filter: blur(120px);
+}
+
+.subtitle {
+  font-size: 60px;
+  letter-spacing: 12px;
+  color: red;
 }
 
 .circle1{
@@ -98,6 +81,11 @@
   padding: 0;
   flex-shrink: 0;
   margin: 0;
+}
+
+el-col {
+  display: flex;
+  justify-content: center;
 }
 
 .m {

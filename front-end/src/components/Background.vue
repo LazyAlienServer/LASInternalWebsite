@@ -122,13 +122,13 @@ const circles = ref([
 .circle {
   position: fixed;
   border-radius: 50%;
-//transform: translate(-50%, -50%); animation: rotate-around-center 3s linear infinite;
+  transform: translate(-50%, -50%); animation: rotate-around-center 3s linear infinite;
 }
 
 .circle2 {
   position: fixed;
   border-radius: 50%;
-//transform: translate(-50%, -50%); animation: rotate-around-center2 3s linear infinite;
+  transform: translate(-50%, -50%); animation: rotate-around-center2 3s linear infinite;
 }
 
 @keyframes rotate-around-center {

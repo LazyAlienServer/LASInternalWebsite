@@ -27,6 +27,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
+    //@ts-ignore
     history: createWebHistory(process.env.BASE_URL),
     routes
 })

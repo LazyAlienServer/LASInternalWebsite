@@ -1,26 +1,47 @@
 <template>
   <Background></Background>
   <div class="user">
-    <div class="left_menu_bg"></div>
-    <!--    <div :class={overlay:isMenuLayout.isMenuLayout.value}></div>-->
-    <div id="left_menu" class="left_menu">
-      <div class="player_Avatar">
-        <div class="player_Avatar_circle">
-          <div class="player_Avatar_img">
-            <el-avatar :size="50"  :src="avatar" />
-          </div>
+    <el-button :style="shouldShowSideBar ? {
+      width: '235px', height: '100%', top: 0
+    } : {}" class="sidebarButton" @click="shouldShowSideBar = true">
+      <img :style="shouldShowSideBar ? {
+        opacity: 0
+      } : {
+        transition: `opacity 0.15s ${ getAnimateDelay(0.35, 0.15) }s ease-out`
+      }" alt="show-menu" src="../resource/hamburger-menu.svg">
+    </el-button>
 
-          <div class="player_info">
-            <p id="userName" style="font-size: 20px; margin-bottom: 8px">{{ UserName }}</p>
-            <p id="uid" style="font-size: 18px">uid:{{UserId}}</p>
-          </div>
+    <div id="sidebar" ref="sidebar" :style="isMobileSideBar ? shouldShowSideBar ? {
+      width: '235px', height: '100%', left: '-40px'
+    } : {
+      width: '90px',
+      transition: 'width 0.5s ease-out, height 0.5s ease-out, top 0.3s 0.1s ease-out, left 0s 0.5s'
+    } : {}" class="sidebar">
+      <div class="player_Avatar">
+        <div :style="isMobileSideBar ? shouldShowSideBar ? {
+          opacity: 1
+        } : {
+          transition: `opacity 0.2s ${ getAnimateDelay(0.25, 0.25) }s ease-in-out`
+        } : {}" class="player_Avatar_img">
+          <el-avatar :size="45" :src="avatar" @error="() => true">
+            <img
+                src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+            />
+          </el-avatar>
+        </div>
+
+        <div class="player_info">
+          <p id="userName" style="font-size: 20px; margin-bottom: 8px">{{ UserName }}</p>
+          <p id="uid" style="font-size: 18px">uid: {{ UserId }}</p>
         </div>
       </div>
       <div class="bar"></div>
       <div class="menu_container">
         <el-scrollbar class="menu_list">
           <div v-for="menu in UserViewMenu" class="menu">
-            <el-button :id="menu.id" class="menu_button" @click="setPage(menu.id)">
+            <el-button :id="menu.id" :style="(shouldShowSideBar && isMobileSideBar) ? {width: '168px'} : {}"
+                       class="menu_button"
+                       @click="setPage(menu.id)">
               <svg :height="menu.icon.height" :viewBox="menu.icon.viewBox" :width="menu.icon.width"
                    fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path :d="menu.icon.d" :opacity="menu.icon.opacity" fill-rule="evenodd" style="fill:#646438"></path>
@@ -31,6 +52,8 @@
         </el-scrollbar>
       </div>
     </div>
+    <div :style="shouldShowSideBar ? {width: '100vw'} : {}" class="left-menu-extending-bg"
+         @click="shouldShowSideBar = false"></div>
     <div class="main">
       <router-view></router-view>
     </div>
@@ -40,6 +63,32 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.sidebarButton {
+  display: none;
+  position: fixed;
+  left: -40px;
+  top: -40px;
+  width: 90px;
+  height: 90px;
+  border-radius: 30px;
+  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.25);
+  background-color: rgb(250, 250, 252);
+  padding: 0;
+  transition: width 0.5s ease-out, height 0.5s ease-out, top 0.3s 0.1s ease-out;
+  z-index: 1;
+}
+
+.sidebarButton >>> span {
+  position: fixed;
+  left: 5px;
+  top: 5px;
+}
+
+.sidebarButton >>> img {
+  opacity: 1;
+  transition: opacity 0.1s ease-out;
+}
 
 .user {
   display: flex;
@@ -54,31 +103,21 @@
   flex-shrink: 0;
 }
 
-
-.left_menu_bg {
-  position: relative;
-  top: 0;
-  bottom: 0;
-  width: 54px;
-  height: auto;
-  z-index: 1;
-}
-
 .menu_container {
   position: absolute;
   z-index: 0;
   left: 54px;
-  top: 117px;
+  top: 107px;
   bottom: 0;
   text-align: left;
-  transition: width 0.3s ease-in-out;
+  transition: width 0.4s ease-out;
 }
 
 .menu_container:hover {
   width: 215px;
 }
 
-.left_menu {
+.sidebar {
   border-radius: 30px;
   box-shadow: 5px 0 10px rgba(0, 0, 0, 0.25);
   background-color: rgb(250, 250, 252);
@@ -86,16 +125,16 @@
   top: 0;
   bottom: 0;
   left: -40px;
-  width: 130px;
-  height: auto;
-  z-index: 1;
-  transition: width 0.3s ease-in-out;
+  width: 116px;
+  height: 100%;
+  z-index: 2;
+  transition: width 0.4s ease-out;
   overflow: hidden;
 }
 
 
-.left_menu:hover {
-  width: 268px;
+.sidebar:hover {
+  width: 235px;
 }
 
 .menu_list {
@@ -105,21 +144,10 @@
 .player_Avatar {
   position: absolute;
   z-index: 7;
-  left: 47.2px;
-  top: 26.4px;
-  width: 44.8px;
-  height: 42.4px;
-}
-
-.player_Avatar_circle {
-  position: absolute;
-  z-index: 0;
-  left: 10px;
-  top: 0;
-  width: 51px;
-  height: 49px;
-  border-radius: 48px;
-  background: rgba(235, 235, 240, 1);
+  left: 54px;
+  top: 26px;
+  width: 45px;
+  height: 42px;
 }
 
 .player_Avatar_img {
@@ -127,32 +155,36 @@
   z-index: 1;
   border: unset !important;
   box-shadow: unset;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   background-size: cover;
 }
 
-.left_menu:hover .player_info {
+.sidebar:hover .player_info {
   color: #646464;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: color 0.4s ease-in-out, background-color 0.4s ease-in-out;
 }
 
 .player_info {
   user-select: none;
   width: 120px;
   margin-left: 62px;
+  margin-top: 2px;
   color: transparent;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: color 0.4s ease-in-out, background-color 0.4s ease-in-out;
 }
 
 .player_info #userName {
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
+  font-size: 18px !important;
+  margin-bottom: 5px !important;
 }
 
 .player_info #uid {
   text-align: left;
+  font-size: 14px !important;
 }
 
 .menu {
@@ -163,7 +195,7 @@
 }
 
 .title-div {
-  margin-left: 32px;
+  margin-left: 22px;
   font-weight: lighter;
   text-align: center;
   white-space: nowrap;
@@ -171,7 +203,7 @@
   position: relative;
   z-index: 4;
   width: 100px;
-  font-size: 24px;
+  font-size: 20px;
   color: #646464;
 }
 
@@ -179,19 +211,19 @@
   overflow: hidden;
   left: 0;
   background-color: rgba(0, 0, 0, 0);
-  width: 60px;
-  padding: 0 15px;
-  height: 51px;
+  width: 46px;
+  padding: 0 10px;
+  height: 41px;
   border: none;
   margin-bottom: 5px;
   border-radius: 10px;
   color: #646464;
-  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: width 0.4s ease-out, background-color 0.2s ease-in-out;
   justify-content: left;
 }
 
-.left_menu:hover .menu_list >>> button {
-  width: 200px;
+.sidebar:hover .menu_list >>> button {
+  width: 168px;
 }
 
 .menu_list >>> button:hover {
@@ -204,8 +236,8 @@
   border: unset !important;
   box-shadow: unset;
   left: 55px;
-  top: 100px;
-  right: 14px;
+  top: 90px;
+  right: 16px;
   height: 1px;
   background-color: rgb(166, 166, 166);
   background-size: cover;
@@ -236,6 +268,49 @@
   background-color: transparent;
 }
 
+.left-menu-extending-bg {
+  position: fixed;
+  height: 100%;
+  width: 0;
+  left: 0;
+  z-index: 1;
+  background-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    left: -200px;
+    width: 116px;
+    height: 50px;
+    border-radius: 30px;
+    box-shadow: none;
+    background-color: transparent;
+    transition: width 0.5s ease-out, height 0.5s ease-out, top 0.3s 0.1s ease-out;
+  }
+
+  .sidebarButton {
+    display: block;
+  }
+
+  .menu_container {
+    width: 215px;
+  }
+
+  .sidebar .menu_list >>> button {
+    width: 21px;
+    transition: width 0.5s ease-out, background-color 0.2s ease-in-out;
+  }
+
+  .sidebar .player_info {
+    color: #646464;
+  }
+
+  .player_Avatar_img {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+  }
+}
+
 </style>
 
 <script lang="ts" setup>
@@ -258,6 +333,14 @@ let UserId :Ref<number | undefined> = ref(0)
 let route = useRouter();
 let transitionName = ref("view");
 let avatar = ref("https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png")
+let sidebar = ref()
+let isMounted = ref(false)
+
+function getAnimateDelay(originalDelay: number, endDelay: number = 0.15) {
+  return isMounted.value ? Math.max(sidebar.value.clientWidth / 235 * (originalDelay + endDelay) - endDelay, 0) : originalDelay;
+}
+
+
 
 function init() {
   if (getCookie('token') != undefined) {

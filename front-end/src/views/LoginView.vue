@@ -30,7 +30,7 @@
               </el-input>
               <div class="line"></div>
             </el-row>
-            <el-row id="user" justify="center" style="margin-top: 57px">
+            <el-row id="user" justify="center" style="margin-top: 38px">
               <el-input v-model="password" class="in" clearable maxlength=18 minlength=6 placeholder="密码"
                         @keyup.enter="Login()"
                         show-password type="password">
@@ -61,8 +61,8 @@
                 <el-button class="activateButton" type="text" @click="">
                   <p>激活账号</p>
                 </el-button>
-                <svg style="width: 3px; height: 13px" xmlns="http://www.w3.org/2000/svg">
-                  <rect height="13" style="fill:rgb(204,136,252)"
+                <svg style="width: 3px; height: 12px; margin-top: 2px" xmlns="http://www.w3.org/2000/svg">
+                  <rect height="12" style="fill:rgb(204,136,252)"
                         width="3"/>
                 </svg>
               </div>
@@ -89,8 +89,8 @@
 }
 
 .el-container {
-  height: 543px;
-  width: 1021px;
+  height: 443px;
+  width: 833px;
   flex-grow: 0;
   background-color: transparent;
   overflow: hidden;
@@ -98,7 +98,7 @@
 }
 
 .el-aside {
-  width: 356px;
+  width: 291px;
   background-color: transparent;
   overflow: hidden;
 }
@@ -118,7 +118,7 @@
 #form {
   background-color: white;
   z-index: 1;
-  width: 665px;
+  width: 542px;
   height: 100%;
 }
 
@@ -134,8 +134,8 @@
 
 .text {
   letter-spacing: 10px;
-  font-size: 36px;
-  margin-top: 52px;
+  font-size: 30px;
+  margin-top: 43px;
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
@@ -159,9 +159,10 @@
 }
 
 #user {
-  margin-top: 63px;
-  width: 459px;
-  left: 102px;
+  margin-top: 43px;
+  width: 372px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 >>> #user .el-input {
@@ -183,7 +184,7 @@
 
 .el-input >>> .el-input__inner {
   margin-left: 10px;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: lighter;
 }
 
@@ -203,11 +204,11 @@
 }
 
 #login {
-  margin-top: 67px;
+  margin-top: 54px;
   margin-left: auto;
   margin-right: auto;
-  height: 57px;
-  width: 403px;
+  height: 46px;
+  width: 329px;
 }
 
 .loginButton {
@@ -268,14 +269,14 @@
 }
 
 #activate {
-  margin-top: 38px;
-  margin-right: 94px;
+  margin-top: 30px;
+  margin-right: 73px;
 }
 
 .activateButton p {
-  font-size: 14px;
+  font-size: 12px;
   color: rgb(178, 82, 247);
-  padding-right: 9px;
+  padding-right: 7px;
   margin-top: -3px;
   font-weight: lighter;
   transition: color 300ms;

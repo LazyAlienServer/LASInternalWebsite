@@ -1,7 +1,7 @@
 <template>
   <div id="tags" class="tags">
     <div v-for="tagsGroup in tagGroups" :style="groupStyle" class="tags-group">
-      <div v-for="tag in tagsGroup" :style="[tagGroupItemStyle,{backgroundColor:getColor(tag)}]"
+      <div v-for="(tag, index) in tagsGroup" :style="[tagGroupItemStyle,{backgroundColor:getColor(tag)},getPadding(index, tagsGroup.length)]"
            class="tags-group-item">
         <p :style="tagStyle" class="tag">{{ tag }}</p>
       </div>
@@ -66,6 +66,11 @@ function getColor(tag: string) {
   return color;
 }
 
+function getPadding(index: number, totalLength: number) {
+  const paddingRightPixel = 25;
+  return index != totalLength-1 ? {paddingRight: paddingRightPixel+'px', marginRight: (-1-paddingRightPixel)+'px'} : {}
+}`  `
+
 function init() {
   // if (tags.value){
   //   let tagsRoot = tags.value as HTMLElement;
@@ -94,13 +99,19 @@ init()
 }
 
 .tags-group-item {
-
   width: max-content;
   height: max-content;
 }
 
 .tag {
   text-align: center;
+}
+
+p {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 </style>
