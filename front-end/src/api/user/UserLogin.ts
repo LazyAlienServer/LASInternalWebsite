@@ -1,4 +1,4 @@
-import {request} from '@/main'
+import {request} from '@/main.ts'
 import {Ref} from "vue";
 import router from "@/router";
 import {ElNotification} from "element-plus";

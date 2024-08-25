@@ -1,5 +1,6 @@
 <template>
-  <Background></Background>
+  <div>
+    <Background></Background>
   <div class="user">
     <el-button :style="shouldShowSideBar ? {
       width: '235px', height: '100%', top: 0
@@ -10,7 +11,6 @@
         transition: `opacity 0.15s ${ getAnimateDelay(0.35, 0.15) }s ease-out`
       }" alt="show-menu" src="../resource/hamburger-menu.svg">
     </el-button>
-
     <div id="sidebar" ref="sidebar" :style="isMobileSideBar ? shouldShowSideBar ? {
       width: '235px', height: '100%', left: '-40px'
     } : {
@@ -26,7 +26,7 @@
           <el-avatar :size="45" :src="avatar" @error="() => true">
             <img
                 src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
-            />
+                alt="no-avatar"/>
           </el-avatar>
         </div>
 
@@ -38,7 +38,7 @@
       <div class="bar"></div>
       <div class="menu_container">
         <el-scrollbar class="menu_list">
-          <div v-for="menu in UserViewMenu" class="menu">
+          <div v-for="menu in UserViewMenu" class="menu" :key="menu.id">
             <el-button :id="menu.id" :style="(shouldShowSideBar && isMobileSideBar) ? {width: '168px'} : {}"
                        class="menu_button"
                        @click="setPage(menu.id)">
@@ -57,6 +57,7 @@
     <div class="main">
       <router-view></router-view>
     </div>
+  </div>
   </div>
 </template>
 
@@ -79,7 +80,7 @@
   z-index: 1;
 }
 
-.sidebarButton >>> span {
+.sidebarButton >>> span{
   position: fixed;
   left: 5px;
   top: 5px;
@@ -98,7 +99,7 @@
   height: 100%;
   width: 100%;
   background-color: transparent;
-//background-color: rgb(231, 228, 241);
+/*background-color: rgb(231, 228, 241);*/
   padding: 0;
   flex-shrink: 0;
 }
@@ -317,7 +318,6 @@
 import {onMounted, Ref, ref} from "vue";
 import {getCookie} from "typescript-cookie";
 import UserViewMenu from "@/utils/userViewMenu";
-import {useRouter} from "vue-router";
 import router from "@/router";
 import getUserAvatar from "@/api/user/userInfo/getUserAvatar";
 import getUserNameByToken from "@/api/user/userInfo/getUserNameByToken";
@@ -327,11 +327,11 @@ import Background from "@/components/Background.vue";
 
 let isMobileSideBar = ref(document.body.clientWidth < 768)
 let shouldShowSideBar = ref(false)
-let Page = 1;
+// let Page = 1;
 let UserName: Ref<string | undefined> = ref("");
 let UserId :Ref<number | undefined> = ref(0)
-let route = useRouter();
-let transitionName = ref("view");
+// let route = useRouter();
+// let transitionName = ref("view");
 let avatar = ref("https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png")
 let sidebar = ref()
 let isMounted = ref(false)
