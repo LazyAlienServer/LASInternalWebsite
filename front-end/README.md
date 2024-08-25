@@ -1,29 +1,20 @@
-# front-end
+# Vue 3 + TypeScript + Vite
 
-## Project setup
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-```
-npm install
-```
+Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
 
-### Compiles and hot-reloads for development
-
-```
-npm run serve
+## Run dev server
+```shell
+pnpm dev
 ```
 
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Run your unit tests
-
-```
-npm run test:unit
+## Build
+```shell
+pnpm dev
 ```
 
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Preview build
+```shell
+pnpm preview
+```

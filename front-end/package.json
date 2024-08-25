@@ -1,49 +1,46 @@
 {
-  "name": "front-end",
-  "version": "0.1.0",
+  "name": "laslog",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit"
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
-    "@types/axios": "^0.14.0",
     "@types/js-cookie": "^3.0.6",
-    "axios": "^1.6.3",
-    "core-js": "^3.8.3",
+    "axios": "^1.7.4",
+    "core-js": "^3.38.1",
     "element-plus": "^2.8.0",
-    "pnpm": "^9.7.1",
+    "pinia": "^2.2.2",
+    "pnpm": "^9.8.0",
     "typescript-cookie": "^1.0.6",
-    "vue": "^3.2.13",
-    "vue-class-component": "^8.0.0-0",
-    "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
+    "vue": "^3.4.38",
+    "vue-router": "^4.4.3"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.1",
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-plugin-typescript": "~5.0.0",
-    "@vue/cli-plugin-unit-jest": "~5.0.0",
-    "@vue/cli-plugin-vuex": "~5.0.0",
-    "@vue/cli-service": "~5.0.8",
-    "@vue/test-utils": "^2.0.0-0",
-    "@vue/vue3-jest": "^27.0.0-alpha.1",
-    "babel-jest": "^27.0.6",
-    "jest": "^27.0.5",
-    "ts-jest": "^27.0.4",
-    "typescript": "~4.5.5",
-    "vue-cli-plugin-axios": "~0.0.4"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ],
-  "jest": {
-    "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel"
+    "@rushstack/eslint-patch": "^1.10.4",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.5.0",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.5.1",
+    "cypress": "^13.13.3",
+    "eslint": "^8.57.0",
+    "eslint-plugin-cypress": "^3.5.0",
+    "eslint-plugin-vue": "^9.27.0",
+    "jsdom": "^24.1.1",
+    "prettier": "^3.3.3",
+    "start-server-and-test": "^2.0.5",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2",
+    "vite-plugin-vue-devtools": "^7.3.8",
+    "vitest": "^1.6.0",
+    "vue-tsc": "^2.0.29"
   }
 }

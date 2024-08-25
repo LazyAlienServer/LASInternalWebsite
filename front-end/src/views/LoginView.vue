@@ -3,7 +3,7 @@
     <!--    原神？启动！-->
     <div class="el-container ">
       <div class="el-aside">
-        <el-image :fit="'cover'" :src="require('../assets/login/floatingcity.jpg')" class="el-image" draggable="false"/>
+        <el-image :fit="'cover'" src="login/floatingcity.jpg" class="el-image" draggable="false"/>
       </div>
       <div id="form">
         <div id="form-container">
@@ -58,7 +58,7 @@
             </el-row>
             <el-row id="activate" justify="end">
               <div class="ButtonBg">
-                <el-button class="activateButton" type="text" @click="">
+                <el-button class="activateButton" type="text">
                   <p>激活账号</p>
                 </el-button>
                 <svg style="width: 3px; height: 12px; margin-top: 2px" xmlns="http://www.w3.org/2000/svg">
@@ -165,7 +165,7 @@
   margin-right: auto;
 }
 
->>> #user .el-input {
+#form >>> #user .el-input {
   border: none;
   margin: 0;
   --el-input-border: 0;

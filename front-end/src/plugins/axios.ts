@@ -130,4 +130,5 @@ export class Request {
 }
 
 // 默认导出Request实例
-export default new Request({})
+
+export const request = new Request({})
