@@ -3,13 +3,16 @@
     <div class="m"></div>
     <div class="circle2"></div>
     <div class="circle1"></div>
-    <el-container class="title-container">
+    <el-aside class="logo-container">
+
+    </el-aside>
+    <el-aside class="title-container">
       <el-col>
         <div class="title"><p style="color: #A263CF">LAS</p><p>&nbsp;</p><p style="color: #8194F0">LOG</p></div>
         <div class="bar"></div>
         <div class="subtitle">Lazy Alien Server</div>
       </el-col>
-    </el-container>
+    </el-aside>
   </div>
 </template>
 
@@ -40,10 +43,19 @@
   backdrop-filter: blur(120px);
 }
 
+.bar {
+  width: 100%;
+  height: 2px;
+  background-image: linear-gradient(to right, rgb(162,99,207) 0%,rgb(129,148,240) 100%);
+}
+
 .subtitle {
+  width: max-content;
   font-size: 60px;
   letter-spacing: 12px;
-  color: red;
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, rgb(162,99,207) 0%,rgb(129,148,240) 100%);
 }
 
 .circle1{

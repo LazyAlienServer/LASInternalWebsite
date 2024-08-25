@@ -1,5 +1,5 @@
 import {request} from '@/main'
-import {Ref} from "vue/dist/vue";
+import {Ref} from "vue";
 import {ElNotification} from "element-plus";
 
 function UserRegister(username: string, password: string, message: Ref<string>): void {

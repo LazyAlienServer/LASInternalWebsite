@@ -11,7 +11,7 @@ pnpm dev
 
 ## Build
 ```shell
-pnpm dev
+pnpm build
 ```
 
 ## Preview build
