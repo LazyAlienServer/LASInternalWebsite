@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
-    "@types/js-cookie": "^3.0.6",
     "axios": "^1.7.4",
     "core-js": "^3.38.1",
     "element-plus": "^2.8.0",
@@ -23,6 +22,7 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.4",
     "@tsconfig/node20": "^20.1.4",
+    "@types/js-cookie": "^3.0.6",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.5.0",
     "@vitejs/plugin-vue": "^5.1.2",
