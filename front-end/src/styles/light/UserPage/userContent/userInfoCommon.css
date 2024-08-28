@@ -1,0 +1,35 @@
+#userContent {
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    width: 75%;
+}
+
+.UserInfoPart{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.partHeader {
+    display: flex;
+    flex-direction: row;
+    font-size: 36px;
+    font-family: "Microsoft YaHei UI", "Microsoft YaHei", serif;
+    margin: 10px 0;
+}
+
+.partHeader p{
+    margin-left: 20px;
+}
+
+.partHeader::before {
+    content: " ";
+    width: 11px;
+    background: grey;
+}
+
+.partContent{
+    display: flex;
+    flex-direction: column;
+}

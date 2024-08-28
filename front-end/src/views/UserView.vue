@@ -80,13 +80,13 @@
   z-index: 1;
 }
 
-.sidebarButton >>> span{
+.sidebarButton :deep(span){
   position: fixed;
   left: 5px;
   top: 5px;
 }
 
-.sidebarButton >>> img {
+.sidebarButton :deep(img) {
   opacity: 1;
   transition: opacity 0.1s ease-out;
 }
@@ -208,7 +208,7 @@
   color: #646464;
 }
 
-.menu_list >>> button {
+.menu_list :deep(button) {
   overflow: hidden;
   left: 0;
   background-color: rgba(0, 0, 0, 0);
@@ -223,11 +223,11 @@
   justify-content: left;
 }
 
-.sidebar:hover .menu_list >>> button {
+.sidebar:hover .menu_list :deep(button) {
   width: 168px;
 }
 
-.menu_list >>> button:hover {
+.menu_list :deep(button:hover) {
   background-color: rgba(230, 235, 255, 70%) !important;
 }
 
@@ -297,7 +297,7 @@
     width: 215px;
   }
 
-  .sidebar .menu_list >>> button {
+  .sidebar .menu_list :deep(button) {
     width: 21px;
     transition: width 0.5s ease-out, background-color 0.2s ease-in-out;
   }
@@ -324,6 +324,7 @@ import getUserNameByToken from "@/api/user/userInfo/getUserNameByToken";
 import getUserIdByToken from "@/api/user/userInfo/getUserIdByToken";
 import {SessionStorageKeys, setSessionStorageItem} from "@/store/sessionStorageManager";
 import Background from "@/components/Background.vue";
+import {throttle} from "@/utils/optimizeUtils.ts";
 
 let isMobileSideBar = ref(document.body.clientWidth < 768)
 let shouldShowSideBar = ref(false)
@@ -387,10 +388,10 @@ onMounted(() => {
   init();
   getAvatar();
   isMounted.value = true
-  window.onresize = () => {
+  window.onresize = throttle(function (){
     isMobileSideBar.value = document.body.clientWidth < 768
     shouldShowSideBar.value = shouldShowSideBar.value && isMobileSideBar.value
-  }
+  })
 });
 
 </script>

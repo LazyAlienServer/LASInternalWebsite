@@ -26,6 +26,7 @@ export interface TagsProps {
   fontWeight?: string,
 
   textColor?: string,
+  letterSpacing?: string
 }
 
 //配置组件参数默认值
@@ -39,6 +40,7 @@ const props = withDefaults(defineProps<TagsProps>(), {
   groupGap: '2px 10px 2px 0',
   itemGap: '0 5px',
   textColor: 'white',
+  letterSpacing: '0px'
 })
 // 标签样式
 const tagStyle = reactive({})
@@ -49,6 +51,7 @@ const tagGroupItemStyle = reactive({
   fontWeight: props.fontWeight,
   borderRadius: props.radius,
   padding: props.itemGap,
+  letterSpacing: props.letterSpacing
 });
 // 标签组整体样式
 const groupStyle = reactive({

@@ -27,9 +27,9 @@ export class Request {
         this.instance.interceptors.request.use(
             (config) => {
                 // 一般会请求拦截里面加token，用于后端的验证
-                const token = localStorage.getItem("token") as string
+                const token = getCookie('token') as string
                 if (token) {
-                    config.headers!.Authorization = token;
+                    config.headers!.token = token;
                 }
                 return config;
             },
