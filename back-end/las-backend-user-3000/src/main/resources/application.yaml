@@ -4,7 +4,7 @@ server:
 spring:
     #RabbitMq
     rabbitmq:
-        host: 127.0.0.1
+        host: lasdevelopmentgroup.ddns.net
         port: 5672
         username: root
         password: root
@@ -30,7 +30,7 @@ spring:
     cache:
         type: redis
     redis:
-        host: r-uf6kcot5rjb73ktg3opd.redis.rds.aliyuncs.com
+        host: r-uf6eakqa522i0nzojzpd.redis.rds.aliyuncs.com
         port: 6379
         database: 0
         username: main
@@ -50,7 +50,7 @@ spring:
     data:
         # mongodb
         mongodb:
-            uri: mongodb://127.0.0.1:27017/user
+            uri: mongodb://root:LasDevMongodb@lasdevelopmentgroup.ddns.net:27017/user
 # log4j2
 logging:
     level:

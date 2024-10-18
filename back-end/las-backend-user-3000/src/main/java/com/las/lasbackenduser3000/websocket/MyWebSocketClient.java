@@ -72,6 +72,8 @@ public class MyWebSocketClient extends WebSocketClient {
             String role = data.getRole();
             //redis insert
             redisTools.insert(userId,role);
+        }else {
+            log.error("------ WebSocket onMessage ------{}",response);
         }
     }
 

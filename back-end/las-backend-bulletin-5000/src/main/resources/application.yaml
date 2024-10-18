@@ -23,7 +23,7 @@ spring:
     cache:
         type: redis
     redis:
-        host: r-uf6kcot5rjb73ktg3opd.redis.rds.aliyuncs.com
+        host: r-uf6eakqa522i0nzojzpd.redis.rds.aliyuncs.com
         port: 6379
         database: 0
         username: main

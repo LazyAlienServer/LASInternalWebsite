@@ -13,14 +13,10 @@ spring:
         multipart:
             max-file-size: 10MB
             max-request-size: 100MB
-    data:
-        # mongodb
-        mongodb:
-            uri: mongodb://127.0.0.1:27017/projectManagerial
     cache:
         type: redis
     redis:
-        host: r-uf6kcot5rjb73ktg3opd.redis.rds.aliyuncs.com
+        host: r-uf6eakqa522i0nzojzpd.redis.rds.aliyuncs.com
         port: 6379
         database: 0
         username: main
