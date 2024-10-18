@@ -107,13 +107,31 @@
 </style>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { onMounted, Reactive, reactive, ref } from "vue";
 import Tags from "@/components/Tags.vue";
 import {
   getSessionStorageItem,
   SessionStorageKeys,
 } from "@/store/sessionStorageManager";
 import Card from "@/components/Card.vue";
+import getUserInfo from "@/api/user/userInfo/getUserInfo.ts";
+import { UserInfo } from "@/utils/model/UserInfo.ts";
+
+const userInfo: Reactive<UserInfo> = reactive({
+  id: -1,
+  time: -1,
+  userName: "none",
+  minecraftName: "none",
+  userSignature: "none",
+  userTag: [[]],
+  lastLogin: -1,
+  whiteList: [],
+  online: -1,
+  probation: -1,
+  administrator: -1,
+  qq: -1,
+  avatar: "none",
+});
 
 let avatar = ref(getSessionStorageItem(SessionStorageKeys.avatar));
 
@@ -140,6 +158,11 @@ function introductionOnBlur() {
   introductionIsFocus = false;
   introduction.value = introductionTemp.value;
   introductionAnimation();
+}
+
+function initIntroduction() {
+  introduction.value = userInfo.userSignature;
+  introductionTemp.value = userInfo.userSignature;
 }
 
 //确认修改简介
@@ -187,5 +210,9 @@ function introductionAnimation() {
   }
 }
 
-onMounted(() => {});
+onMounted(() => {
+  getUserInfo(userInfo, function () {
+    initIntroduction();
+  });
+});
 </script>
