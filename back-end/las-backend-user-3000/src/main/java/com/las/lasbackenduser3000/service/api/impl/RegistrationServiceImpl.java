@@ -51,6 +51,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         String originalPassword = (String) jsonParam.get("password");
         String qq = (String) jsonParam.get("qq");
         String verificationCode = (String) jsonParam.get("verificationCode");
+        String minecraftName = (String) jsonParam.get("minecraftName");
 
         //用qq号为key查询redis,获取验证码
         String getVerificationCodeByQq = (String) redisTools.getByKey(qq);
@@ -87,6 +88,7 @@ public class RegistrationServiceImpl implements RegistrationService {
                 user.setUserTag(null);
                 user.setLastLogin(null);
                 user.setWhiteList(null);
+                user.setMinecraftName(minecraftName);
                 //setOnline(null);
                 user.setProbation("0");
                 switch (role) {
