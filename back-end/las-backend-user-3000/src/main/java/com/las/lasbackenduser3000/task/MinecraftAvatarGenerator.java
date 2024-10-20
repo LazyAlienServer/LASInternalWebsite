@@ -35,7 +35,7 @@ public class MinecraftAvatarGenerator {
         this.fileUploadService = fileUploadService;
     }
 
-    @Scheduled(cron = "0 * * * * ?")
+    @Scheduled(cron = "0 */10 * * * ?")
     public void autoGetMinecraftAvatar() throws IOException {
         log.info("定时任务(autoGetMinecraftAvatar)开始获取所有用户头像");
 
