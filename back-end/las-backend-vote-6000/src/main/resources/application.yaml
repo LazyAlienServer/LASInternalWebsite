@@ -1,0 +1,51 @@
+server:
+    port: 6000
+# 数据源
+spring:
+    application:
+        name: las-backend-vote-6000
+    cloud:
+        nacos:
+            config:
+                server-addr: 127.0.0.1:8848
+    datasource:
+        dynamic:
+            primary: mysql-development
+            strict: true #不严格匹配数据源
+            datasource:
+                #开发数据源-暂时不契合生产环境数据库的多库
+                mysql-development:
+                    url: jdbc:mysql://rm-uf6591z23t4337h84ko.mysql.rds.aliyuncs.com:3306/dev
+                    username: root
+                    password: LASDevsql2023!
+                    driver-class-name: com.mysql.cj.jdbc.Driver
+    # redis caching
+    cache:
+        type: redis
+    redis:
+        host: r-uf6eakqa522i0nzojzpd.redis.rds.aliyuncs.com
+        port: 6379
+        database: 0
+        username: main
+        password: LazyAlienServer2024!
+        timeout: 3000ms
+        lettuce:
+            pool:
+                max-active: 10
+                max-idle: 10
+                max-wait: 3000ms
+                min-idle: 20
+    servlet:
+        # 文件上传限制
+        multipart:
+            max-file-size: 10MB
+            max-request-size: 100MB
+    #data:
+        #mongodb:
+            #uri: mongodb://root:LasDevMongodb@lasdevelopmentgroup.ddns.net:27017/user
+# log4j2
+logging:
+    level:
+        cn.jay.repository: trace
+#onebot11:
+    #access_token: "@LazyAlienServer"

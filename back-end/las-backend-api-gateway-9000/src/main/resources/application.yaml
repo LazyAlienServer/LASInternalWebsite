@@ -43,6 +43,12 @@ spring:
           predicates:
             - Path=/bulletin/**
             - Method=GET,POST
+        #投票模块route
+        - id:  las-backend-vote-6000
+          uri: http://localhost:6000
+          predicates:
+            - Path=/vote/**
+            - Method=GET,POST
     nacos:
       config:
         server-addr: 127.0.0.1:8848

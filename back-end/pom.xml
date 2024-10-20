@@ -16,6 +16,7 @@
         <module>las-backend-project-managerial-submit-4000</module>
         <module>las-backend-project-managerial-audits-4500</module>
         <module>las-backend-bulletin-5000</module>
+        <module>las-backend-vote-6000</module>
     </modules>
 
     <properties>
